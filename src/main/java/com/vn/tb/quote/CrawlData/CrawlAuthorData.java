@@ -6,7 +6,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -57,7 +59,7 @@ public class CrawlAuthorData {
 	            author.setNickName(getNickName(jsonobject.getString("link")));
 	            author.setAvatar(jsonobject.getJSONObject("image").get("url").toString());
 	            
-	            List<Quote> lstQuotes = new ArrayList<Quote>();
+	            Set<Quote> lstQuotes = new HashSet<Quote>();
 	            
 	            for (int pageQuote = 1; pageQuote <= 18; pageQuote++) {
 	            	List<Quote> lst = crawlQuoteData.callQuoteAPI(getNickName(jsonobject.getString("link")),
