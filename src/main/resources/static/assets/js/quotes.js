@@ -1,7 +1,9 @@
 var $rowQuotes = $('.rowQuotes');
-var $quoteColors = ["rgb(255, 255, 255)","rgb(10,11,15)"];
-var $authorColors = ["rgb(255, 119, 68)","rgb(0,0,0)"];
-var $backgroundColors = ["rgb(255, 255, 255)","rgb(87, 92, 126)", "rgb(100, 100, 100)"];
+var $container = $('.container');
+var $quoteLstColors = ["rgb(255, 255, 255)","rgb(10,11,15)"];
+var $authorLstColors = ["rgb(255, 119, 68)","rgb(0,0,0)"];
+var $backgroundLstColors = ["rgb(255, 255, 255)","rgb(100, 100, 100)","rgb(255, 192, 109)","rgb(61, 203, 138)","rgb(61, 139, 195)"];
+var $variableColor = "";
 
 $(function() {
    boxList = document.getElementsByClassName('icon-box');
@@ -9,24 +11,31 @@ $(function() {
    		author = boxList[i].querySelector('.author-id');
    		quote = boxList[i].querySelector('.quote-id');
    		
-   		color = getRandomColor($quoteColors);
-   		quote.style.color = color;
-   		
-   		if (color === "rgb(255, 255, 255)") {
-   			author.style.color = getRandomColor($authorColors);
-   			boxList[i].style.backgroundColor = getRandomColor($backgroundColors.slice(1));
-   		} else {
-   			author.style.color = "rgb(255, 119, 68)";
-   			boxList[i].style.backgroundColor = getRandomColor($backgroundColors.slice(0,-1));
-   		}
+   		var temp = getRandomColor($backgroundLstColors);
+		while ($variableColor === temp) {
+			temp = getRandomColor($backgroundLstColors);
+		}
+		
+		if ($backgroundLstColors.slice(2).includes(temp)) {
+			quote.style.color = $quoteLstColors[0];
+   			author.style.color = $authorLstColors[1];
+		} else if (temp === "rgb(100, 100, 100)") {
+			quote.style.color = $quoteLstColors[0];
+			author.style.color = $authorLstColors[0];
+		} else {
+			quote.style.color = $quoteLstColors[1];
+			author.style.color = $authorLstColors[0];
+		}
+		
+		boxList[i].style.backgroundColor = temp;
+		$variableColor = temp;
    }
  });
 
 $(window).scroll(function() {
 	if($(window).scrollTop() == $(document).height() - $(window).height()) {
-		var page = ($('.icon-box').length / 50) + 1;
-		//console.log($rowQuotes.html());
-		getQuotes(page.toString());
+		var page = ($('.icon-box').length / 60) + 1;
+		getQuotes(page);
     }
 });
 
@@ -36,16 +45,15 @@ function getQuotes(page) {
 		url: "/quote/v1/quotes?page=" + page + "&per_page=",
 		contentType: "application/json",
 		success: function(data, textStatus, jqXHR) {
-			var message = $rowQuotes.html();
-			
+			var message = '';
 			for (var i = 0; i < data.length; i++) {
 				message = message
 						+ '<div class="align-items-stretch" style="margin-bottom: 2.5em">\n'
 						+ '<div class="icon-box">\n'
 						+ '<h4><a class="quote-id" href="">' + data[i].content + '</a></h4>\n'
-						+ '<p class="author-id">' + data[i].author.nam + '</p></div></div>\n'
+						+ '<p class="author-id">' + data[i].author.name + '</p></div></div>\n';
 			}
-			$rowQuotes.html(message);			
+			$rowQuotes.append(message);
 	    },
 		error: function(jqXHR, textStatus, errorThrown){
 			console.log("========> " + errorThrown);

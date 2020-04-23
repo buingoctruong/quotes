@@ -426,7 +426,7 @@ h1, h2, h3, h4, h5, h6 {
 .quotes .container {
   padding: 2.5em;
   max-width: 100%;
-  background: #dcdcdc;
+  background: #fafafa;
 }
 
 .quotes .icon-box {
@@ -437,6 +437,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 50px 20px;
   transition: all ease-in-out 0.3s;
   display: inline-block;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.14)
 }
 
 .quotes .icon-box h4 {

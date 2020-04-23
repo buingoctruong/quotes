@@ -25,9 +25,10 @@ public class QuoteController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView Quotes(
 			@RequestParam(value = "page", required = true, defaultValue = "1") int page,
-	        @RequestParam(value = "per_page", required = true, defaultValue = "50") int per_page,
+	        @RequestParam(value = "per_page", required = true, defaultValue = "60") int per_page,
 	        ModelAndView modelAndView) {
 		List<Quote> lstQuotes = quoteService.getQuotes(page, per_page);
+		System.out.println(lstQuotes.get(1).getContent());
 		modelAndView.addObject("lstQuotes", lstQuotes);
 		modelAndView.setViewName("quotes");
 		return modelAndView;

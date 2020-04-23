@@ -22,7 +22,7 @@ public class APIController {
 	@RequestMapping(value = "/quotes", method = RequestMethod.GET)
 	public ResponseEntity<List<Quote>> getListQuotes(
 			@RequestParam(value = "page", required = true, defaultValue = "1") int page,
-	        @RequestParam(value = "per_page", required = false, defaultValue = "50") int per_page) {
+	        @RequestParam(value = "per_page", required = false, defaultValue = "60") int per_page) {
 		try {
 			List<Quote> lstQuotes = quoteService.getQuotes(page, per_page);
 			return new ResponseEntity<List<Quote>>(lstQuotes, HttpStatus.OK);
