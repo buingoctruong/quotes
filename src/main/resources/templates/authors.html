@@ -40,11 +40,11 @@
   <section id="authors" class="authors">
     <div class="container">
       <div class="lst-item">
-        <div class="item" style="margin-bottom: 2.5em" th:each="author : ${lstAuthors}">
-          <div class="icon-box" th:style="'background-image:url(' + ${author.avatar} + ');'">
+        <div class="item" th:style="'background-image:url(' + ${author.avatar} + ');'" th:each="author : ${lstAuthors}">
+          <div class="icon-box">
           	<div class="content">
           		<h4 class="author-name" th:text="${author.name}"></h4>
-            	<p class="quote-num" th:text="${author.name}"></p>
+            	<p class="quote-num" th:text="${#lists.size(author.quotes)} + ' quotes'"></p>
           	<div>
           </div>
         </div>

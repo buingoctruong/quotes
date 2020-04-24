@@ -1,5 +1,6 @@
 package com.vn.tb.quote.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vn.tb.quote.Model.Author;
+import com.vn.tb.quote.DTO.AuthorDTO;
 import com.vn.tb.quote.Model.Quote;
 import com.vn.tb.quote.Service.AuthorService;
 import com.vn.tb.quote.Service.QuoteService;
@@ -38,15 +39,27 @@ public class APIController {
 	}
 	
 	@RequestMapping(value = "/authors", method = RequestMethod.GET)
-	public ResponseEntity<List<Author>> getListAuthors(
+	public ResponseEntity<List<AuthorDTO>> getListAuthors(
 			@RequestParam(value = "page", required = true, defaultValue = "1") int page,
 	        @RequestParam(value = "per_page", required = false, defaultValue = "60") int per_page) {
 		try {
-			List<Author> lstAuthors = authorService.getAuthors(page, per_page);
-			return new ResponseEntity<List<Author>>(lstAuthors, HttpStatus.OK);
+			List<AuthorDTO> lstAuthors = new ArrayList<AuthorDTO>();
+			
+			authorService.getAuthors(page, per_page).forEach(item -> {
+				AuthorDTO temp = new AuthorDTO();
+				
+				temp.setName(item.getName());
+				temp.setNickName(item.getNickName());
+				temp.setAvatar(item.getAvatar());
+				temp.setNumQuotes(item.getQuotes().size());
+				
+				lstAuthors.add(temp);
+			});
+			
+			return new ResponseEntity<List<AuthorDTO>>(lstAuthors, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new ResponseEntity<List<Author>>(HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<List<AuthorDTO>>(HttpStatus.BAD_REQUEST);
 	}
 }

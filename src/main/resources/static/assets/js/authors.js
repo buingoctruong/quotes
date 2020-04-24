@@ -33,11 +33,11 @@ function getAuthors(page) {
 			var message = '';
 			for (var i = 0; i < data.length; i++) {
 				message = message
-						+ '<div class="item" style="margin-bottom: 2.5em">\n'
-						+ '<div class="icon-box" style="background-image:url(' + data[i].avatar + ');">\n'
+						+ '<div class="item" style="background-image:url(' + data[i].avatar + ');">\n'
+						+ '<div class="icon-box">\n'
 						+ '<div class="content">\n'
 						+ '<h4 class="author-name">' + data[i].name + '</h4>\n'
-						+ '<p class="quote-num">' + data[i].name + '</p></div></div></div>\n';
+						+ '<p class="quote-num">' + data[i].numQuotes + ' quotes</p></div></div></div>\n';
 			}
 			$lstItem.append(message);
 			setHeight();
