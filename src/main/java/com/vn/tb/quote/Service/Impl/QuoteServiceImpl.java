@@ -10,7 +10,7 @@ import com.vn.tb.quote.Repository.QuoteRepository;
 import com.vn.tb.quote.Service.QuoteService;
 
 @Service
-public class quoteServiceImpl implements QuoteService{
+public class QuoteServiceImpl implements QuoteService{
 	@Autowired
 	QuoteRepository quoteRepository;
 	

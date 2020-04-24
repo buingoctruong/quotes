@@ -19,8 +19,8 @@ function getRandomColor(colors) {
 function setRandomColor(page=1) {
    boxList = document.getElementsByClassName('icon-box');
    for (var i = (60*(page-1)); i < boxList.length; i++) {
-   		author = boxList[i].querySelector('.author-id');
-   		quote = boxList[i].querySelector('.quote-id');
+   		author = boxList[i].querySelector('.quote-author');
+   		quote = boxList[i].querySelector('.quote-content');
    		
    		var temp = getRandomColor($backgroundLstColors);
 		while ($variableColor === temp) {
@@ -51,7 +51,8 @@ function setHeight(page=1) {
    		$heightColumnThree += itemList[i+2] ? itemList[i+2].offsetHeight : 0;
    }
    var height = Math.max($heightColumnOne, $heightColumnTwo, $heightColumnThree);
-   var margin = (itemList.length % 3) ? (Math.floor(itemList.length/3) + 1)*40 : (itemList.length/3)*40;
+   var rows = (itemList.length % 3) ? (Math.floor(itemList.length/3) + 1) : (itemList.length/3)
+   var margin = rows*40;
    $(".lst-item").css('height', (height + margin));
 }
 
@@ -74,8 +75,8 @@ function getQuotes(page) {
 				message = message
 						+ '<div class="item" style="margin-bottom: 2.5em">\n'
 						+ '<div class="icon-box">\n'
-						+ '<h4><a class="quote-id" href="">' + data[i].content + '</a></h4>\n'
-						+ '<p class="author-id">' + data[i].author.name + '</p></div></div>\n';
+						+ '<h4><a class="quote-content" href="">' + data[i].content + '</a></h4>\n'
+						+ '<p class="quote-author">' + data[i].author.name + '</p></div></div>\n';
 			}
 			$lstItem.append(message);
 			setHeight(page);

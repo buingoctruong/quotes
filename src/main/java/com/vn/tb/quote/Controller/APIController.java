@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vn.tb.quote.Model.Author;
 import com.vn.tb.quote.Model.Quote;
+import com.vn.tb.quote.Service.AuthorService;
 import com.vn.tb.quote.Service.QuoteService;
 
 @RestController
@@ -18,6 +20,9 @@ import com.vn.tb.quote.Service.QuoteService;
 public class APIController {
 	@Autowired
 	QuoteService quoteService;
+	
+	@Autowired
+	AuthorService authorService;
 	
 	@RequestMapping(value = "/quotes", method = RequestMethod.GET)
 	public ResponseEntity<List<Quote>> getListQuotes(
@@ -30,5 +35,18 @@ public class APIController {
 			e.printStackTrace();
 		}
 		return new ResponseEntity<List<Quote>>(HttpStatus.BAD_REQUEST);
+	}
+	
+	@RequestMapping(value = "/authors", method = RequestMethod.GET)
+	public ResponseEntity<List<Author>> getListAuthors(
+			@RequestParam(value = "page", required = true, defaultValue = "1") int page,
+	        @RequestParam(value = "per_page", required = false, defaultValue = "60") int per_page) {
+		try {
+			List<Author> lstAuthors = authorService.getAuthors(page, per_page);
+			return new ResponseEntity<List<Author>>(lstAuthors, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<List<Author>>(HttpStatus.BAD_REQUEST);
 	}
 }

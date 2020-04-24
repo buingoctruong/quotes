@@ -8,11 +8,7 @@
   <title>Laura Bootstrap Template - Index</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+  
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Satisfy" rel="stylesheet">
 
@@ -28,25 +24,34 @@
 
 </head>
 
-<body>
+<body id="body" style="overflow: scroll;">
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top  d-flex justify-content-center align-items-center" th:fragment="header">
+  <div th:replace="header :: header" />
+  <!-- End Header -->
+  
+  <section id="quote-header">
+    <div class="quote-header-container">
+    	<h1>Authors</h1>
+    </div>
+  </section>
 
-    <nav class="nav-menu d-none d-lg-block">
-      <ul>
-        <li class="active"><a href="/">Logo</a></li>
-        <li><a href="/authors">Authors</a></li>
-        <li><a href="#resume">Collections</a></li>
-        <li><a href="/quotes">Quotes</a></li>
-        <li><a href="#portfolio">Topics</a></li>
-        <li><a href="#contact">...</a></li>
-
-      </ul>
-    </nav><!-- .nav-menu -->
-
-  </header><!-- End Header -->
-
+  <!-- ======= Authors Section ======= -->
+  <section id="authors" class="authors">
+    <div class="container">
+      <div class="lst-item">
+        <div class="item" style="margin-bottom: 2.5em" th:each="author : ${lstAuthors}">
+          <div class="icon-box" th:style="'background-image:url(' + ${author.avatar} + ');'">
+          	<div class="content">
+          		<h4 class="author-name" th:text="${author.name}"></h4>
+            	<p class="quote-num" th:text="${author.name}"></p>
+          	<div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Authors Section -->
+  
   <!-- Vendor JS Files -->
   <script src="assets/vendor/jquery/jquery.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -60,6 +65,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/authors.js"></script>
 
 </body>
 

@@ -429,24 +429,22 @@ h1, h2, h3, h4, h5, h6 {
   background: #fafafa;
 }
 
-.lst-item {
-/*  column-count: 3;
-  column-gap: 2.5em;*/
+.quotes .lst-item {
   display: flex;
   flex-flow: column wrap;
   align-content: space-between;
 }
 
-.item {
+.quotes .item {
   width: 31.5%;
 }
 
-.item:nth-child(3n+1) { order: 1; }
-.item:nth-child(3n+2) { order: 2; }
-.item:nth-child(3n)   { order: 3; }
+.quotes .item:nth-child(3n+1) { order: 1; }
+.quotes .item:nth-child(3n+2) { order: 2; }
+.quotes .item:nth-child(3n)   { order: 3; }
 
-.lst-item::before,
-.lst-item::after {
+.quotes .lst-item::before,
+.quotes .lst-item::after {
   content: "";
   flex-basis: 100%;
   width: 0;
@@ -483,11 +481,88 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-.quotes .icon-box:hover {
+/*.quotes .icon-box:hover {
   background: #18d26e;
   border-color: #18d26e;
 }
 
 .quotes .icon-box:hover h4 a, .quotes .icon-box:hover p {
   color: #fff;
+}*/
+
+/*--------------------------------------------------------------
+# Authors
+--------------------------------------------------------------*/
+.authors .container {
+  padding: 2.5em;
+  max-width: 100%;
+  background: #fafafa;
+}
+
+.authors .lst-item {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: space-between;
+}
+
+.authors .item {
+  width: 31.5%;
+  display: flex;
+  position: relative;
+  height: 300px;
+}
+
+.authors .item:nth-child(3n+1) { order: 1; }
+.authors .item:nth-child(3n+2) { order: 2; }
+.authors .item:nth-child(3n)   { order: 3; }
+
+.authors .lst-item::before,
+.authors .lst-item::after {
+  content: "";
+  flex-basis: 100%;
+  width: 0;
+  order: 2;
+}
+
+.authors .icon-box {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: #fff;
+  padding: 50px 20px;
+  display: inline-block;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.14);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.authors .icon-box .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) }
+}
+
+.authors .icon-box h4 {
+  font-family: "Playfair Display", Georgia, serif;
+  letter-spacing: 3px;
+  font-weight: 700;
+  margin: 20px;
+  font-size: 22px;
+  color: #fff;
+  display: inline-block;
+  position: relative;
+  overflow-wrap: break-word;
+}
+
+.authors .content p {
+  line-height: 24px;
+  letter-spacing: 3px;
+  font-size: 14px;
+  margin: 20px;
+  font-weight: 500;
+  color: #fff;
+  text-transform: uppercase;
+  position: relative;
 }
