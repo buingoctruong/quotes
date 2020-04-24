@@ -429,6 +429,30 @@ h1, h2, h3, h4, h5, h6 {
   background: #fafafa;
 }
 
+.lst-item {
+/*  column-count: 3;
+  column-gap: 2.5em;*/
+  display: flex;
+  flex-flow: column wrap;
+  align-content: space-between;
+}
+
+.item {
+  width: 31.5%;
+}
+
+.item:nth-child(3n+1) { order: 1; }
+.item:nth-child(3n+2) { order: 2; }
+.item:nth-child(3n)   { order: 3; }
+
+.lst-item::before,
+.lst-item::after {
+  content: "";
+  flex-basis: 100%;
+  width: 0;
+  order: 2;
+}
+
 .quotes .icon-box {
   width: 100%;
   height: 100%;
@@ -466,9 +490,4 @@ h1, h2, h3, h4, h5, h6 {
 
 .quotes .icon-box:hover h4 a, .quotes .icon-box:hover p {
   color: #fff;
-}
-
-.rowQuotes {
-  column-count: 3;
-  column-gap: 2.5em;
 }

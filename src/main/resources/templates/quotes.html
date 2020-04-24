@@ -39,8 +39,8 @@
   <!-- ======= Quotes Section ======= -->
   <section id="quotes" class="quotes">
     <div class="container">
-      <div class="rowQuotes">
-        <div class="align-items-stretch" style="margin-bottom: 2.5em" th:each="quote : ${lstQuotes}">
+      <div class="lst-item">
+        <div class="item" style="margin-bottom: 2.5em" th:each="quote : ${lstQuotes}">
           <div class="icon-box">
             <h4><a class="quote-id" href="" th:text="${quote.content}"></a></h4>
             <p class="author-id" th:text="${quote.author.name}"></p>
