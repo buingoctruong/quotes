@@ -8,7 +8,7 @@ var $heightColumnTwo = 0;
 var $heightColumnThree = 0;
 
 $(function() {
-   setHeight();
+//    setHeight();
    setRandomColor();
 });
 
@@ -56,6 +56,61 @@ function setHeight(page=1) {
    $(".lst-item").css('height', (height + margin));
 }
 
+/**
+ * Calculate the masonry
+ *
+ * Calculate the average of heights of masonry-bricks and then
+ * set it as the height of the masonry element.	
+ *
+ * @param grid       Object  The Masonry Element 
+ * @param gridCell   Object  The Masonry bricks
+ * @param gridGutter Integer The Vertical Space between bricks 
+ * @param dGridCol   Integer Number of columns on big screens
+ * @param tGridCol   Integer Number of columns on medium-sized screens
+ * @param mGridCol   Integer Number of columns on small screens
+ */
+function masonry(grid, gridCell, gridGutter, dGridCol, tGridCol, mGridCol) {
+	var g = document.querySelector(grid),
+		gc = document.querySelectorAll(gridCell),
+		gcLength = gc.length, // Total number of cells in the masonry
+		gHeight = 0, // Initial height of our masonry
+		i; // Loop counter
+	
+	// Calculate the net height of all the cells in the masonry
+	for(i=0; i<gcLength; ++i) {
+	  gHeight+=gc[i].offsetHeight+parseInt(gridGutter);
+	}
+	
+	/*
+	 * Calculate and set the masonry height based on the columns
+	 * provided for big, medium, and small screen devices.
+	 */ 
+	if(window.screen.width >= 1024) {
+	  g.style.height = gHeight/dGridCol + gHeight/(gcLength+1) + "px";
+	} else if(window.screen.width < 1024 && window.screen.width >= 768) {
+	  g.style.height = gHeight/tGridCol + gHeight/(gcLength+1) + "px";
+	} else {
+	  g.style.height = gHeight/mGridCol + gHeight/(gcLength+1) + "px";
+	}
+}
+
+/**
+ * Reform the masonry
+ *
+ * Rebuild the masonry grid on every resize and load event after making sure 
+ * all the images in the grid are completely loaded.
+ */
+["resize", "load"].forEach(function(event) {
+	// Follow below steps every time the window is loaded or resized
+	window.addEventListener(event, function() {
+		/*
+		* A maonsry grid with 40px gutter, with 3 columns on desktop,
+		* 2 on tablet, and 1 column on mobile devices.
+		*/
+		masonry(".lst-item", ".item", 40, 3, 2, 1);
+	});
+});
+
 $(window).scroll(function() {
 	if($(window).scrollTop() == $(document).height() - $(window).height()) {
 		// get page number
@@ -74,12 +129,16 @@ function getQuotes(page) {
 			for (var i = 0; i < data.length; i++) {
 				message = message
 						+ '<div class="item" style="margin-bottom: 2.5em">\n'
-						+ '<div class="icon-box">\n'
-						+ '<h4><a class="quote-content" href="">' + data[i].content + '</a></h4>\n'
-						+ '<p class="quote-author">' + data[i].author.name + '</p></div></div>\n';
+						+ '<div><section class="icon-box">\n'
+						+ '<h4 class="quote-content">' + data[i].content + '</h4>\n'
+						+ '<p class="quote-author">' + data[i].author.name + '</p></section>\n'
+						+ '<footer><button class="share-button">\n'
+						+ '<i class="fa fa-share-alt fa-x"></i></button>\n'
+						+ '<button class="exclam-button">\n'
+						+ '<i class="fa fa-exclamation-circle fa-x"></i></button></footer></div></div>\n';
 			}
 			$lstItem.append(message);
-			setHeight(page);
+			// setHeight(page);
 			setRandomColor(page);
 	    },
 		error: function(jqXHR, textStatus, errorThrown){

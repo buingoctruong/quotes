@@ -430,6 +430,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .quotes .lst-item {
+  width: 100%;
   display: flex;
   flex-flow: column wrap;
   align-content: space-between;
@@ -462,6 +463,45 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 1px 4px rgba(0,0,0,0.14)
 }
 
+footer {
+  position: relative;
+  height: 55px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 0px 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.14)
+}
+
+footer .share-button {
+  position: absolute;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  color: rgba(218, 223, 225, 1);
+  background: #fff;
+  border: none;
+  border-radius: 30px;
+}
+
+footer .exclam-button {
+  position: absolute;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  color: rgba(218, 223, 225, 1);
+  background: #fff;
+  border: none;
+  border-radius: 30px;
+}
+
+footer .fa.fa-x {
+  font-size: 1em;
+}
+
 .quotes .icon-box h4 {
   font-weight: 500;
   margin-bottom: 35px;
@@ -469,6 +509,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   position: relative;
   overflow-wrap: break-word;
+  transition: 0.25s;
 }
 
 .quotes .icon-box p {
@@ -481,14 +522,25 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-/*.quotes .icon-box:hover {
-  background: #18d26e;
-  border-color: #18d26e;
+.fa-share-alt {
+  transition: 0.25s;
 }
 
-.quotes .icon-box:hover h4 a, .quotes .icon-box:hover p {
-  color: #fff;
-}*/
+.fa-exclamation-circle {
+  transition: 0.25s;
+}
+
+.quotes .item:hover .fa-share-alt {
+  color: #f74;
+}
+
+.quotes .item:hover .fa-exclamation-circle {
+  color: #3375a4;
+}
+
+.quotes .icon-box h4:hover {
+  /* color: #A0A0A0 !important; */
+}
 
 /*--------------------------------------------------------------
 # Authors
@@ -537,6 +589,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all ease-in-out 0.3s;
   background: rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 4px rgba(0,0,0,0.14);
+  transition: 0.25s;
 }
 
 .authors .icon-box .content {
