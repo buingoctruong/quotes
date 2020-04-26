@@ -18,6 +18,7 @@
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -40,14 +41,26 @@
   <section id="authors" class="authors">
     <div class="container">
       <div class="lst-item">
-        <a href="/quotes" class="item" th:style="'background-image:url(' + ${author.avatar} + ');'" th:each="author : ${lstAuthors}">
-          <div class="icon-box">
-          	<div class="content">
-          		<h4 class="author-name" th:text="${author.name}"></h4>
-            	<p class="quote-num" th:text="${#lists.size(author.quotes)} + ' quotes'"></p>
-            </div>
+        <div class="item" th:each="author : ${lstAuthors}">
+          <div class="item-content">
+            <section class="section-box" th:style="'background-image:url(' + ${author.avatar} + ');'">
+              <a href="/quotes" class="icon-box">
+                <div class="icon-box-content">
+                  <h4 class="author-name" th:text="${author.name}"></h4>
+                  <p class="quote-num" th:text="${#lists.size(author.quotes)} + ' quotes'"></p>
+                </div>
+              </a>
+            </section>
+            <footer>
+              <button class="share-button">
+                <i class="fa fa-share-alt fa-x"></i>
+              </button>
+              <button class="exclam-button">
+                <i class="fa fa-exclamation-circle fa-x"></i>
+              </button>
+            </footer>
           </div>
-        </a>
+        </div>
       </div>
     </div>
   </section><!-- End Authors Section -->

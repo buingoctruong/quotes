@@ -8,7 +8,6 @@ var $heightColumnTwo = 0;
 var $heightColumnThree = 0;
 
 $(function() {
-//    setHeight();
    setRandomColor();
 });
 
@@ -43,54 +42,55 @@ function setRandomColor(page=1) {
    }
 }
 
-function setHeight(page=1) {
-   itemList = document.getElementsByClassName('item');
-   for (var i = (60*(page-1)); i < itemList.length; i+=3) {
-   		$heightColumnOne += itemList[i].offsetHeight;
-   		$heightColumnTwo += itemList[i+1] ? itemList[i+1].offsetHeight : 0;
-   		$heightColumnThree += itemList[i+2] ? itemList[i+2].offsetHeight : 0;
-   }
-   var height = Math.max($heightColumnOne, $heightColumnTwo, $heightColumnThree);
-   var rows = (itemList.length % 3) ? (Math.floor(itemList.length/3) + 1) : (itemList.length/3)
-   var margin = rows*40;
-   $(".lst-item").css('height', (height + margin));
+/**
+ * Set appropriate spanning to any masonry item
+ *
+ * Get different properties we already set for the masonry, calculate 
+ * height or spanning for any cell of the masonry grid based on its 
+ * content-wrapper's height, the (row) gap of the grid, and the size 
+ * of the implicit row tracks.
+ *
+ * @param item Object A brick/tile/cell inside the masonry
+ */
+function resizeMasonryItem(item){
+	/* Get the grid object, its row-gap, and the size of its implicit rows */
+	var grid = document.getElementsByClassName('lst-item')[0],
+		rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap')),
+		rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
+  
+	/*
+	 * Spanning for any brick = S
+	 * Grid's row-gap = G
+	 * Size of grid's implicitly create row-track = R
+	 * Height of item content = H
+	 * Net height of the item = H1 = H + G
+	 * Net height of the implicit row-track = T = G + R
+	 * S = H1 / T
+	 */
+	var rowSpan = Math.ceil((item.querySelector('.item-content').getBoundingClientRect().height+rowGap)/(rowHeight+rowGap));
+  
+	/* Set the spanning as calculated above (S) */
+	item.style.gridRowEnd = 'span '+rowSpan;
 }
 
 /**
- * Calculate the masonry
+ * Apply spanning to all the masonry items
  *
- * Calculate the average of heights of masonry-bricks and then
- * set it as the height of the masonry element.	
+ * Loop through all the items and apply the spanning to them using 
+ * `resizeMasonryItem()` function.
  *
- * @param grid       Object  The Masonry Element 
- * @param gridCell   Object  The Masonry bricks
- * @param gridGutter Integer The Vertical Space between bricks 
- * @param dGridCol   Integer Number of columns on big screens
- * @param tGridCol   Integer Number of columns on medium-sized screens
- * @param mGridCol   Integer Number of columns on small screens
+ * @uses resizeMasonryItem
  */
-function masonry(grid, gridCell, gridGutter, dGridCol, tGridCol, mGridCol) {
-	var g = document.querySelector(grid),
-		gc = document.querySelectorAll(gridCell),
-		gcLength = gc.length, // Total number of cells in the masonry
-		gHeight = 0, // Initial height of our masonry
-		i; // Loop counter
-	
-	// Calculate the net height of all the cells in the masonry
-	for(i=0; i<gcLength; ++i) {
-	  gHeight+=gc[i].offsetHeight+parseInt(gridGutter);
-	}
-	
+function resizeAllMasonryItems(){
+	// Get all item class objects in one list
+	var allItems = document.getElementsByClassName('item');
+  
 	/*
-	 * Calculate and set the masonry height based on the columns
-	 * provided for big, medium, and small screen devices.
-	 */ 
-	if(window.screen.width >= 1024) {
-	  g.style.height = gHeight/dGridCol + gHeight/(gcLength+1) + "px";
-	} else if(window.screen.width < 1024 && window.screen.width >= 768) {
-	  g.style.height = gHeight/tGridCol + gHeight/(gcLength+1) + "px";
-	} else {
-	  g.style.height = gHeight/mGridCol + gHeight/(gcLength+1) + "px";
+	 * Loop through the above list and execute the spanning function to
+	 * each list-item (i.e. each masonry item)
+	 */
+	for(var i=0;i<allItems.length;i++){
+	  resizeMasonryItem(allItems[i]);
 	}
 }
 
@@ -102,13 +102,7 @@ function masonry(grid, gridCell, gridGutter, dGridCol, tGridCol, mGridCol) {
  */
 ["resize", "load"].forEach(function(event) {
 	// Follow below steps every time the window is loaded or resized
-	window.addEventListener(event, function() {
-		/*
-		* A maonsry grid with 40px gutter, with 3 columns on desktop,
-		* 2 on tablet, and 1 column on mobile devices.
-		*/
-		masonry(".lst-item", ".item", 40, 3, 2, 1);
-	});
+	window.addEventListener(event, resizeAllMasonryItems);
 });
 
 $(window).scroll(function() {
@@ -128,8 +122,8 @@ function getQuotes(page) {
 			var message = '';
 			for (var i = 0; i < data.length; i++) {
 				message = message
-						+ '<div class="item" style="margin-bottom: 2.5em">\n'
-						+ '<div><section class="icon-box">\n'
+						+ '<div class="item">\n'
+						+ '<div class="item-content"><section class="icon-box">\n'
 						+ '<h4 class="quote-content">' + data[i].content + '</h4>\n'
 						+ '<p class="quote-author">' + data[i].author.name + '</p></section>\n'
 						+ '<footer><button class="share-button">\n'
@@ -138,7 +132,7 @@ function getQuotes(page) {
 						+ '<i class="fa fa-exclamation-circle fa-x"></i></button></footer></div></div>\n';
 			}
 			$lstItem.append(message);
-			// setHeight(page);
+			resizeAllMasonryItems();
 			setRandomColor(page);
 	    },
 		error: function(jqXHR, textStatus, errorThrown){
