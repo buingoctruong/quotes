@@ -8,4 +8,6 @@ public interface QuoteService {
 	List<Quote> getQuotes(int page, int per_page);
 	
 	List<Quote> findByCollection(String collection, int page, int per_page);
+	
+	List<Quote> findByTopic(String collection, int page, int per_page);
 }

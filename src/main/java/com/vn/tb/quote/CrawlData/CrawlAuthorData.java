@@ -69,7 +69,8 @@ public class CrawlAuthorData {
 	            Set<Quote> lstQuotes = new HashSet<Quote>();
 	            
 	            for (int pageQuote = 1; pageQuote <= 18; pageQuote++) {
-	            	List<Quote> lst = crawlQuoteData.callQuoteAPIWithAuthor(getSlugName(jsonobject.getString("link")), pageQuote);
+	            	List<Quote> lst = crawlQuoteData.callQuoteAPIWithAuthor(getSlugName(jsonobject.getString("link")), 
+	            			pageQuote, author);
 	            	
 	            	if (!lst.isEmpty()) {
 	            		lstQuotes.addAll(lst);
@@ -78,7 +79,7 @@ public class CrawlAuthorData {
 	            	}
 	            }
 	            
-	            quoteRepository.saveAll(lstQuotes);
+	            author.setQuotes(lstQuotes);
 	            
 	            authorRepository.save(author);
 	        }	        

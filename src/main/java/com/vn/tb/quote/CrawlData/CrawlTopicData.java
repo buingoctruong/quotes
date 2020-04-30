@@ -10,6 +10,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,7 @@ public class CrawlTopicData {
 	@Autowired
 	CrawlQuoteData crawlQuoteData;
 	
+	@Transactional
 	public void callTopicAPI(int pageTopic) {
 		HttpURLConnection getConnection = null;
 		try {
@@ -75,9 +78,8 @@ public class CrawlTopicData {
 		            Set<Quote> lstQuotes = new HashSet<Quote>();
 		            
 		            for (int pageQuote = 1; pageQuote <= 20; pageQuote++) {
-		            	List<Quote> lst = crawlQuoteData.callQuoteAPIWithTopic(jsonobject.getString("name"), 
-		            			getSlugName(jsonobject.getString("link")),
-		            			pageQuote);
+		            	List<Quote> lst = crawlQuoteData.callQuoteAPIWithTopic(getSlugName(jsonobject.getString("link")),
+		            			pageQuote, topic);
 		            	
 		            	if (!lst.isEmpty()) {
 		            		lstQuotes.addAll(lst);
@@ -85,7 +87,8 @@ public class CrawlTopicData {
 		            		break;
 		            	}
 		            }
-		            quoteRepository.saveAll(lstQuotes);
+		            topic.getQuotes().addAll(lstQuotes);
+		            
 		            topicRepository.save(topic);
 	            }
 	        }	        

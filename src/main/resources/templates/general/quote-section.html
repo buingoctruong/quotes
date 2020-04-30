@@ -35,7 +35,7 @@
           <div class="item-content">
               <section class="icon-box">
                 <h4 class="quote-content" th:text="${quote.content}"></h4>
-                <p class="quote-author" th:text="${quote.author}"></p>
+                <p class="quote-author" th:text="${quote.author} ? ${quote.author.name} : 'Anonymous'"></p>
               </section>
               <footer>
                 <button class="share-button">

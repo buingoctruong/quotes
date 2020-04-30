@@ -1,11 +1,18 @@
 package com.vn.tb.quote.Model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "author")
@@ -36,9 +43,9 @@ public class Author {
 	@Column(name = "profile", columnDefinition = "text", length = 32500)
 	public String profile;
 	
-//	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	@JsonIgnore
-//    private Set<Quote> quotes;
+	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+    private Set<Quote> quotes;
 
 	public Integer getId() {
 		return id;
@@ -102,5 +109,13 @@ public class Author {
 
 	public void setProfile(String profile) {
 		this.profile = profile;
+	}
+
+	public Set<Quote> getQuotes() {
+		return quotes;
+	}
+
+	public void setQuotes(Set<Quote> quotes) {
+		this.quotes = quotes;
 	}
 }

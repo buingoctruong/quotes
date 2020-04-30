@@ -27,12 +27,12 @@ public class ScheduledTasks {
 		log.info("the crawl is started");
 		try {
 			// max page is 156
-//			for (int pageAuthor = 1; pageAuthor <= 10; pageAuthor++) {
+//			for (int pageAuthor = 1; pageAuthor <= 1; pageAuthor++) {
 //				crawlAuthorData.callAuthorAPI(pageAuthor);
 //			}
 			
 			// max page is 21
-//			for (int pageTopic = 1; pageTopic <= 2; pageTopic++) {
+//			for (int pageTopic = 1; pageTopic <= 1; pageTopic++) {
 //				crawlTopicData.callTopicAPI(pageTopic);
 //			}
 			

@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,7 @@ public class CrawlCollectionData {
 	@Autowired
 	CrawlQuoteData crawlQuoteData;
 	
+	@Transactional
 	public void callCollectionAPI() {
 		HttpURLConnection getConnection = null;
 		try {		    
@@ -62,8 +65,8 @@ public class CrawlCollectionData {
 	            Set<Quote> lstQuotes = new HashSet<Quote>();
 	            
 	            for (int pageQuote = 1; pageQuote <= 5; pageQuote++) {
-	            	List<Quote> lst = crawlQuoteData.callQuoteAPIWithCollection(jsonobject.getString("name"), 
-	            			getSlugName(jsonobject.getString("link")), pageQuote);
+	            	List<Quote> lst = crawlQuoteData.callQuoteAPIWithCollection(getSlugName(jsonobject.getString("link")), 
+	            			pageQuote, collection);
 	            	
 	            	if (!lst.isEmpty()) {
 	            		lstQuotes.addAll(lst);
@@ -72,8 +75,8 @@ public class CrawlCollectionData {
 	            	}
 	            }
 	            
-	            quoteRepository.saveAll(lstQuotes);
-	            	            
+	            collection.getQuotes().addAll(lstQuotes);
+	            
 	            collectionRepository.save(collection);
 	        }	        
 		} catch (Exception e) {

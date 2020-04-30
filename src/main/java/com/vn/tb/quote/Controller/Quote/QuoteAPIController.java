@@ -21,6 +21,8 @@ public class QuoteAPIController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Quote>> getListQuotes (
+			@RequestParam(value = "collection", required = false) String collection,
+			@RequestParam(value = "topic", required = false) String topic,
 			@RequestParam(value = "page", required = true, defaultValue = "1") int page,
 	        @RequestParam(value = "per_page", required = false, defaultValue = "60") int per_page) {
 		try {
@@ -31,18 +33,4 @@ public class QuoteAPIController {
 		}
 		return new ResponseEntity<List<Quote>>(HttpStatus.BAD_REQUEST);
 	}
-	
-//	@RequestMapping(method = RequestMethod.GET)
-//	public ResponseEntity<List<Quote>> getListQuotesByCollection (
-//			@RequestParam(value = "collection", required = true) String collection,
-//			@RequestParam(value = "page", required = true, defaultValue = "1") int page,
-//	        @RequestParam(value = "per_page", required = false, defaultValue = "60") int per_page) {
-//		try {
-//			List<Quote> lstQuotes = quoteService.findByCollection(collection, page, per_page);
-//			return new ResponseEntity<List<Quote>>(lstQuotes, HttpStatus.OK);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return new ResponseEntity<List<Quote>>(HttpStatus.BAD_REQUEST);
-//	}
 }

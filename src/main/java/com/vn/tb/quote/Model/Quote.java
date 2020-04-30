@@ -1,6 +1,11 @@
 package com.vn.tb.quote.Model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "quote")
@@ -13,30 +18,19 @@ public class Quote {
 	@Column(name = "content", columnDefinition = "text", length = 32500)
 	public String content;
 	
-	@Column(name = "author")
-	public String author;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private Author author;
 	
-	@Column(name = "collection")
-	public String collection;
+	// when crawling, change fetch to EAGER
+	@ManyToMany(cascade = CascadeType.MERGE, mappedBy = "quotes", fetch = FetchType.LAZY)
+	@JsonIgnore
+    private Set<Collection> collections = new HashSet<>();
 	
-	@Column(name = "topic")
-	public String topic;
-	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn
-//    private Author author;
-	
-//	@ManyToMany(cascade = {
-//		    CascadeType.PERSIST,
-//		    CascadeType.MERGE }, mappedBy = "quotes", fetch = FetchType.LAZY)
-//	@JsonIgnore
-//    private Set<Collection> collections = new HashSet<>();
-//	
-//	@ManyToMany(cascade = {
-//		    CascadeType.PERSIST,
-//		    CascadeType.MERGE }, mappedBy = "quotes", fetch = FetchType.LAZY)
-//	@JsonIgnore
-//    private Set<Topic> topics = new HashSet<>();
+	// when crawling, change fetch to EAGER
+	@ManyToMany(cascade = CascadeType.MERGE, mappedBy = "quotes", fetch = FetchType.LAZY)
+	@JsonIgnore
+    private Set<Topic> topics = new HashSet<>();
 	
 
 	public Integer getId() {
@@ -55,27 +49,27 @@ public class Quote {
 		this.content = content;
 	}
 
-	public String getAuthor() {
+	public Author getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(String author) {
+	public void setAuthor(Author author) {
 		this.author = author;
 	}
 
-	public String getCollection() {
-		return collection;
+	public Set<Collection> getCollections() {
+		return collections;
 	}
 
-	public void setCollection(String collection) {
-		this.collection = collection;
+	public void setCollections(Set<Collection> collections) {
+		this.collections = collections;
 	}
 
-	public String getTopic() {
-		return topic;
+	public Set<Topic> getTopics() {
+		return topics;
 	}
 
-	public void setTopic(String topic) {
-		this.topic = topic;
+	public void setTopics(Set<Topic> topics) {
+		this.topics = topics;
 	}
 }

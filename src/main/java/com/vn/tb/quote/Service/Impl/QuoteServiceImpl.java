@@ -25,4 +25,10 @@ public class QuoteServiceImpl implements QuoteService{
 		int offset = (page-1) * per_page;
 		return quoteRepository.findByCollection(collection, offset, per_page);
 	}
+	
+	@Override
+	public List<Quote> findByTopic(String collection, int page, int per_page) {
+		int offset = (page-1) * per_page;
+		return quoteRepository.findByTopic(collection, offset, per_page);
+	}
 }

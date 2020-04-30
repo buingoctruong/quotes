@@ -67,7 +67,7 @@ function resizeAllMasonryItems(){
  * Apply getting slugName from the link
  * 
  */
-function getItemFromLink(path) {
+function getSlugNameFromLink(path) {
 	var lastIndex = path.lastIndexOf("/");
 	var nearLastIndex = path.lastIndexOf("/", lastIndex - 1);
 

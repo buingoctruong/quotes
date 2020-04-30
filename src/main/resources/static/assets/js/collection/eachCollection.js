@@ -1,9 +1,7 @@
-var $collectionName;
 var $collectionSlugName;
 
 $(function() {
-	$collectionName = $('.header-section h1').text();
-	$collectionSlugName = getItemFromLink(window.location.pathname);
+	$collectionSlugName = getSlugNameFromLink(window.location.pathname);
 });
 
 $(window).scroll(function() {
@@ -11,11 +9,11 @@ $(window).scroll(function() {
 		// get page number
 		var page = ($('.icon-box').length / 60) + 1;
 
-		getCollections(collection, page);
+		getQuotesByCollection(page);
     }
 });
 
-function getCollections($collectionName, $collectionSlugName, page) {
+function getQuotesByCollection(page) {
 	$.ajax({
 		type: "GET",
 		url: "/quote/v1/quotes?collection=" +  $collectionSlugName + "&page=" + page + "&per_page=",
@@ -24,13 +22,10 @@ function getCollections($collectionName, $collectionSlugName, page) {
 			var message = '';
 			for (var i = 0; i < data.length; i++) {
 				message = message
-						+ '<div class="item"><div class="item-content">\n'
-						+ '<section class="section-box" style="background-image:url(' + data[i].image + ');">\n'
-						+ '<a href="/' + data[i].link + '" class="icon-box">\n'
-						+ '<div class="icon-box-content">\n'
-						+ '<h4 class="author-name">' + data[i].name + '</h4>\n'
-						+ '<hr>\n'
-						+ '<p class="quote-num">' + data[i].count + ' quotes</p></div></a></section>\n'
+						+ '<div class="item">\n'
+						+ '<div class="item-content"><section class="icon-box">\n'
+						+ '<h4 class="quote-content">' + data[i].content + '</h4>\n'
+						+ '<p class="quote-author">' + data[i].author.name + '</p></section>\n'
 						+ '<footer><button class="share-button">\n'
 						+ '<i class="fa fa-share-alt fa-x"></i></button>\n'
 						+ '<button class="exclam-button">\n'
@@ -38,6 +33,7 @@ function getCollections($collectionName, $collectionSlugName, page) {
 			}
 			$lstItem.append(message);
 			resizeAllMasonryItems();
+			setRandomColor(page);
 	    },
 		error: function(jqXHR, textStatus, errorThrown){
 			console.log(errorThrown);

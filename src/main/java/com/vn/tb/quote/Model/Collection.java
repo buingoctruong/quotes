@@ -1,6 +1,11 @@
 package com.vn.tb.quote.Model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "collection")
@@ -25,14 +30,16 @@ public class Collection {
 	@Column(name = "profile", columnDefinition = "text", length = 32500)
 	public String profile;
 	
-//	@ManyToMany(cascade = {
-//		    CascadeType.PERSIST,
-//		    CascadeType.MERGE }, fetch = FetchType.LAZY)
-//	@JoinTable(name = "collection_quote",
-//	    joinColumns = @JoinColumn(name = "collection_id", referencedColumnName = "id"),
-//	    inverseJoinColumns = @JoinColumn(name = "quote_id", referencedColumnName = "id"))
-//	@JsonIgnore
-//	private Set<Quote> quotes = new HashSet<>();
+	// when crawling, change fetch to EAGER
+	@ManyToMany(cascade = {
+            CascadeType.MERGE,
+            CascadeType.PERSIST
+        }, fetch = FetchType.LAZY)
+	@JoinTable(name = "collection_quote",
+	    joinColumns = @JoinColumn(name = "collection_id", referencedColumnName = "id"),
+	    inverseJoinColumns = @JoinColumn(name = "quote_id", referencedColumnName = "id"))
+	@JsonIgnore
+	private Set<Quote> quotes = new HashSet<>();
 
 	public Integer getId() {
 		return id;
@@ -80,5 +87,13 @@ public class Collection {
 
 	public void setProfile(String profile) {
 		this.profile = profile;
+	}
+
+	public Set<Quote> getQuotes() {
+		return quotes;
+	}
+
+	public void setQuotes(Set<Quote> quotes) {
+		this.quotes = quotes;
 	}
 }

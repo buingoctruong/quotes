@@ -8,12 +8,17 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.vn.tb.quote.Model.Author;
+import com.vn.tb.quote.Model.Collection;
 import com.vn.tb.quote.Model.Quote;
+import com.vn.tb.quote.Model.Topic;
 import com.vn.tb.quote.Repository.QuoteRepository;
 
 @Component
@@ -23,7 +28,7 @@ public class CrawlQuoteData {
 	@Autowired
 	QuoteRepository quoteRepository;
 	
-	public List<Quote> callQuoteAPIWithAuthor(String nickName, int page) {
+	public List<Quote> callQuoteAPIWithAuthor(String nickName, int page, Author author) {
 		HttpURLConnection getConnection = null;
 		List<Quote> lst = new ArrayList<Quote>();
 		try {
@@ -58,7 +63,8 @@ public class CrawlQuoteData {
 		            JSONObject jsonobject = objResult.getJSONObject(i);
 		            Quote quote = new Quote();
 		            quote.setContent(jsonobject.getString("body"));
-		            quote.setAuthor(jsonobject.getJSONObject("author").get("name").toString());
+		            quote.setAuthor(author);
+		            
 		            lst.add(quote);
 		        }
 		    }
@@ -72,7 +78,8 @@ public class CrawlQuoteData {
 		return lst;
 	}
 	
-	public List<Quote> callQuoteAPIWithCollection(String collectionName, String collectionSlugName, int page) {
+	@Transactional
+	public List<Quote> callQuoteAPIWithCollection(String collectionSlugName, int page, Collection collection) {
 		HttpURLConnection getConnection = null;
 		List<Quote> lst = new ArrayList<Quote>();
 		try {
@@ -105,18 +112,17 @@ public class CrawlQuoteData {
 		            JSONObject jsonobject = objResult.getJSONObject(i);
 		            
 		            String content = jsonobject.getString("body");
-		            String author = jsonobject.getJSONObject("author").get("name").toString();
 
-		            List<Quote> existQuote = quoteRepository.findByContentAndAuthor(content, author);
+		            List<Quote> existQuote = quoteRepository.findByContent(content);
 		            		            
 		            if (0 != existQuote.size()) {
-		            	existQuote.get(0).setCollection(collectionName);
-		            	quoteRepository.save(existQuote.get(0));
+		            	existQuote.get(0).getCollections().add(collection);
+		            	lst.add(existQuote.get(0));
 		            } else {
 		            	Quote quote = new Quote();
 			            quote.setContent(content);
-			            quote.setAuthor(author);
-			            quote.setCollection(collectionName);
+			            quote.getCollections().add(collection);
+			            
 			            lst.add(quote);
 		            }
 		        }
@@ -131,7 +137,8 @@ public class CrawlQuoteData {
 		return lst;
 	}
 	
-	public List<Quote> callQuoteAPIWithTopic(String topicName, String topicSlugName, int page) {
+	@Transactional
+	public List<Quote> callQuoteAPIWithTopic(String topicSlugName, int page, Topic topic) {
 		HttpURLConnection getConnection = null;
 		List<Quote> lst = new ArrayList<Quote>();
 		try {
@@ -166,18 +173,17 @@ public class CrawlQuoteData {
 		            JSONObject jsonobject = objResult.getJSONObject(i);
 		            
 		            String content = jsonobject.getString("body");
-		            String author = jsonobject.getJSONObject("author").get("name").toString();
 
-		            List<Quote> existQuote = quoteRepository.findByContentAndAuthor(content, author);
+		            List<Quote> existQuote = quoteRepository.findByContent(content);
 		            
 		            if (0 != existQuote.size()) {
-		            	existQuote.get(0).setTopic(topicName);
-		            	quoteRepository.save(existQuote.get(0));
+		            	existQuote.get(0).getTopics().add(topic);
+		            	lst.add(existQuote.get(0));
 		            } else {
 		            	Quote quote = new Quote();
 			            quote.setContent(content);
-			            quote.setAuthor(author);
-			            quote.setTopic(topicName);
+			            quote.getTopics().add(topic);
+			            
 			            lst.add(quote);
 		            }
 		        }

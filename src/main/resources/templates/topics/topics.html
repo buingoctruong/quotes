@@ -44,7 +44,7 @@
         <div class="item" th:each="topic : ${lstTopics}">
           <div class="item-content">
             <section class="section-box" th:style="'background-image:url(' + ${topic.image} + ');'">
-              <a href="/quotes" class="icon-box">
+              <a th:href="@{'/' + ${topic.link}}" class="icon-box">
                 <div class="icon-box-content">
                   <h4 class="author-name" th:text="${topic.name}"></h4>
                   <hr>
