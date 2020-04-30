@@ -1,15 +1,10 @@
 package com.vn.tb.quote.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "author")
-public class Author {
+@Table(name = "collection")
+public class Collection {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -21,24 +16,23 @@ public class Author {
 	@Column(name = "link")
 	public String link;
 	
-	@Column(name = "featured", nullable = false)
-	public Integer featured;
-	
 	@Column(name = "count")
 	public Integer count;
 	
 	@Column(name = "image")
 	public String image;
 	
-	@Column(name = "birthday")
-	public String birthday;
-	
 	@Column(name = "profile", columnDefinition = "text", length = 32500)
 	public String profile;
 	
-//	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	@ManyToMany(cascade = {
+//		    CascadeType.PERSIST,
+//		    CascadeType.MERGE }, fetch = FetchType.LAZY)
+//	@JoinTable(name = "collection_quote",
+//	    joinColumns = @JoinColumn(name = "collection_id", referencedColumnName = "id"),
+//	    inverseJoinColumns = @JoinColumn(name = "quote_id", referencedColumnName = "id"))
 //	@JsonIgnore
-//    private Set<Quote> quotes;
+//	private Set<Quote> quotes = new HashSet<>();
 
 	public Integer getId() {
 		return id;
@@ -64,14 +58,6 @@ public class Author {
 		this.link = link;
 	}
 
-	public Integer getFeatured() {
-		return featured;
-	}
-
-	public void setFeatured(Integer featured) {
-		this.featured = featured;
-	}
-
 	public Integer getCount() {
 		return count;
 	}
@@ -86,14 +72,6 @@ public class Author {
 
 	public void setImage(String image) {
 		this.image = image;
-	}
-
-	public String getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
 	}
 
 	public String getProfile() {

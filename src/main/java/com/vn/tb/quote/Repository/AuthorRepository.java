@@ -10,6 +10,6 @@ import com.vn.tb.quote.Model.Author;
 
 @Repository
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
-	@Query(value = "SELECT * FROM author LIMIT :offset, :per_page ", nativeQuery = true)
+	@Query(value = "SELECT * FROM author ORDER BY featured DESC LIMIT :offset, :per_page ", nativeQuery = true)
 	List<Author> getAuthors(int offset, int per_page);
 }

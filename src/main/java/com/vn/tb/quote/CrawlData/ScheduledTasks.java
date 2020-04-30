@@ -14,16 +14,30 @@ public class ScheduledTasks {
 	CrawlAuthorData crawlAuthorData;
 	
 	@Autowired
+	CrawlCollectionData crawlCollectionData;
+	
+	@Autowired
+	CrawlTopicData crawlTopicData;
+	
+	@Autowired
 	CrawlQuoteData crawlQuoteData;
 	
-	@Scheduled(fixedRate = 1000000000)
+//	@Scheduled(fixedRate = 1000000000)
 	public void reportCurrentTime() {
 		log.info("the crawl is started");
 		try {
+			// max page is 156
+//			for (int pageAuthor = 1; pageAuthor <= 10; pageAuthor++) {
+//				crawlAuthorData.callAuthorAPI(pageAuthor);
+//			}
 			
-			for (int pageAuthor = 0; pageAuthor <= 156; pageAuthor++) {
-				crawlAuthorData.callAuthorAPI(pageAuthor);
-			}
+			// max page is 21
+//			for (int pageTopic = 1; pageTopic <= 2; pageTopic++) {
+//				crawlTopicData.callTopicAPI(pageTopic);
+//			}
+			
+//			crawlCollectionData.callCollectionAPI();
+			
 			log.info("the crawl is finished");
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,17 +13,17 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.vn.tb.quote.Model.Author;
+import com.vn.tb.quote.Model.Collection;
 import com.vn.tb.quote.Model.Quote;
-import com.vn.tb.quote.Repository.AuthorRepository;
+import com.vn.tb.quote.Repository.CollectionRepository;
 import com.vn.tb.quote.Repository.QuoteRepository;
 
 @Component
-public class CrawlAuthorData {
-	public static final String api = "https://api.quotery.com/wp-json/quotery/v1/authors?orderby=popular&";
+public class CrawlCollectionData {
+	public static final String api = "https://api.quotery.com/wp-json/quotery/v1/collections?orderby=popular&page=1&per_page=120";
 	
 	@Autowired
-	AuthorRepository authorRepository;
+	CollectionRepository collectionRepository;
 	
 	@Autowired
 	QuoteRepository quoteRepository;
@@ -32,16 +31,12 @@ public class CrawlAuthorData {
 	@Autowired
 	CrawlQuoteData crawlQuoteData;
 	
-	public void callAuthorAPI(int pageAuthor) {
+	public void callCollectionAPI() {
 		HttpURLConnection getConnection = null;
-		try {
-			String url = api + URLEncoder.encode("page", "UTF-8") + "=" + pageAuthor;
-	        
-		    url += "&" + URLEncoder.encode("per_page", "UTF-8") + "=" + 120;
-		    
-			URL authorRequest = new URL(url);
+		try {		    
+			URL collectionRequest = new URL(api);
 		    String readLine = null;
-		    getConnection = (HttpURLConnection) authorRequest.openConnection();
+		    getConnection = (HttpURLConnection) collectionRequest.openConnection();
 		    getConnection.setRequestMethod("GET");
 		    getConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36");
 		    
@@ -57,19 +52,18 @@ public class CrawlAuthorData {
 	        
 	        for (int i = 0; i < jsonObject.length(); i++) {
 	            JSONObject jsonobject = jsonObject.getJSONObject(i);
-	            Author author = new Author();
-	            author.setName(jsonobject.getString("name"));
-	            author.setLink(jsonobject.getString("link"));
-	            author.setFeatured(jsonobject.getInt("featured"));
-	            author.setCount(jsonobject.getInt("count"));
-	            author.setImage(jsonobject.getJSONObject("image").get("url").toString());
-	            author.setBirthday(jsonobject.getString("birthday"));
-	            author.setProfile(jsonobject.getString("body"));
+	            Collection collection = new Collection();
+	            collection.setName(jsonobject.getString("name"));
+	            collection.setLink(jsonobject.getString("link"));
+	            collection.setCount(jsonobject.getInt("count"));
+	            collection.setImage(jsonobject.getJSONObject("image").get("url").toString());
+	            collection.setProfile(jsonobject.getString("body"));
 	            
 	            Set<Quote> lstQuotes = new HashSet<Quote>();
 	            
-	            for (int pageQuote = 1; pageQuote <= 18; pageQuote++) {
-	            	List<Quote> lst = crawlQuoteData.callQuoteAPIWithAuthor(getSlugName(jsonobject.getString("link")), pageQuote);
+	            for (int pageQuote = 1; pageQuote <= 5; pageQuote++) {
+	            	List<Quote> lst = crawlQuoteData.callQuoteAPIWithCollection(jsonobject.getString("name"), 
+	            			getSlugName(jsonobject.getString("link")), pageQuote);
 	            	
 	            	if (!lst.isEmpty()) {
 	            		lstQuotes.addAll(lst);
@@ -79,8 +73,8 @@ public class CrawlAuthorData {
 	            }
 	            
 	            quoteRepository.saveAll(lstQuotes);
-	            
-	            authorRepository.save(author);
+	            	            
+	            collectionRepository.save(collection);
 	        }	        
 		} catch (Exception e) {
 			e.printStackTrace();

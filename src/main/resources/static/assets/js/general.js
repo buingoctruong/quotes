@@ -1,20 +1,4 @@
 var $lstItem = $('.lst-item');
-var $heightColumnOne = 0;
-var $heightColumnTwo = 0;
-var $heightColumnThree = 0;
-
-$(function() {
-//    setHeight();
-});
-
-function setHeight() {
-   itemList = document.getElementsByClassName('item');
-   var heightPerItem = itemList[0].offsetHeight;
-   var rows = (itemList.length % 3) ? (Math.floor(itemList.length/3) + 1) : (itemList.length/3)
-   var height = heightPerItem * rows;
-   var margin = rows*40;
-   $(".lst-item").css('height', (height + margin));
-}
 
 /**
  * Set appropriate spanning to any masonry item
@@ -79,39 +63,13 @@ function resizeAllMasonryItems(){
 	window.addEventListener(event, resizeAllMasonryItems);
 });
 
-$(window).scroll(function() {
-	if($(window).scrollTop() == $(document).height() - $(window).height()) {
-		// get page number
-		var page = ($('.icon-box').length / 60) + 1;
-		getAuthors(page);
-    }
-});
+/**
+ * Apply getting slugName from the link
+ * 
+ */
+function getItemFromLink(path) {
+	var lastIndex = path.lastIndexOf("/");
+	var nearLastIndex = path.lastIndexOf("/", lastIndex - 1);
 
-function getAuthors(page) {
-	$.ajax({
-		type: "GET",
-		url: "/quote/v1/authors?page=" + page + "&per_page=",
-		contentType: "application/json",
-		success: function(data, textStatus, jqXHR) {
-			var message = '';
-			for (var i = 0; i < data.length; i++) {
-				message = message
-						+ '<div class="item"><div class="item-content">\n'
-						+ '<section class="section-box" style="background-image:url(' + data[i].avatar + ');">\n'
-						+ '<a href="/quotes" class="icon-box">\n'
-						+ '<div class="icon-box-content">\n'
-						+ '<h4 class="author-name">' + data[i].name + '</h4>\n'
-						+ '<p class="quote-num">' + data[i].numQuotes + ' quotes</p></div></a></section>\n'
-						+ '<footer><button class="share-button">\n'
-						+ '<i class="fa fa-share-alt fa-x"></i></button>\n'
-						+ '<button class="exclam-button">\n'
-						+ '<i class="fa fa-exclamation-circle fa-x"></i></button></footer></div></div>\n';
-			}
-			$lstItem.append(message);
-			resizeAllMasonryItems();
-	    },
-		error: function(jqXHR, textStatus, errorThrown){
-			console.log(errorThrown);
-        }
-	});
+	return path.substring(nearLastIndex + 1, lastIndex);
 }

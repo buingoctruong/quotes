@@ -1,11 +1,10 @@
-package com.vn.tb.quote.Controller;
+package com.vn.tb.quote.Controller.Author;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,11 +18,10 @@ public class AuthorController {
 	AuthorService authorService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView Authors(
-			@RequestParam(value = "page", required = true, defaultValue = "1") int page,
-	        @RequestParam(value = "per_page", required = true, defaultValue = "60") int per_page,
-	        ModelAndView modelAndView) {
-		List<Author> lstAuthors = authorService.getAuthors(page, per_page);
+	public ModelAndView Authors(ModelAndView modelAndView) {
+		int defaultPage = 1;
+		int defaultPerPage = 60;
+		List<Author> lstAuthors = authorService.getAuthors(defaultPage, defaultPerPage);
 		modelAndView.addObject("lstAuthors", lstAuthors);
 		modelAndView.setViewName("authors");
 		return modelAndView;

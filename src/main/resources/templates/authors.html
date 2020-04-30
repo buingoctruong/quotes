@@ -28,26 +28,27 @@
 <body id="body" style="overflow: scroll;">
 
   <!-- ======= Header ======= -->
-  <div th:replace="header :: header" />
+  <div th:replace="general/header :: header" />
   <!-- End Header -->
   
-  <section id="quote-header">
-    <div class="quote-header-container">
+  <section class="header-section author">
+    <div class="header-section-container">
     	<h1>Authors</h1>
     </div>
   </section>
 
   <!-- ======= Authors Section ======= -->
-  <section id="authors" class="authors">
+  <section id="authors" class="authors-collections-topics">
     <div class="container">
       <div class="lst-item">
         <div class="item" th:each="author : ${lstAuthors}">
           <div class="item-content">
-            <section class="section-box" th:style="'background-image:url(' + ${author.avatar} + ');'">
+            <section class="section-box" th:style="'background-image:url(' + ${author.image} + ');'">
               <a href="/quotes" class="icon-box">
                 <div class="icon-box-content">
                   <h4 class="author-name" th:text="${author.name}"></h4>
-                  <p class="quote-num" th:text="${#lists.size(author.quotes)} + ' quotes'"></p>
+                  <hr>
+                  <p class="quote-num" th:text="${author.count} + ' quotes'"></p>
                 </div>
               </a>
             </section>
@@ -78,7 +79,8 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/authors.js"></script>
+  <script src="assets/js/general.js"></script>
+  <script src="assets/js/author/authors.js"></script>
 
 </body>
 

@@ -524,16 +524,18 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-#quote-header {
+/*--------------------------------------------------------------
+# Header Section
+--------------------------------------------------------------*/
+.header-section {
   width: 100%;
   height: 50vh;
-  background-image: url("../img/quote-header.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
   position: relative;
 }
 
-#quote-header .quote-header-container {
+.header-section .header-section-container {
   position: absolute;
   bottom: 0;
   top: 0;
@@ -546,7 +548,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 15px;
 }
 
-#quote-header h1 {
+.header-section h1 {
   margin: 0 0 10px 0;
   font-size: 56px;
   font-weight: 700;
@@ -554,13 +556,49 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
+.header-section.quote {
+  background-image: url("../img/quote-header.jpg");
+}
+
+.header-section.author {
+  background-image: url("../img/quote-header.jpg");
+}
+
+.header-section.collection {
+  background-image: url("../img/quote-header.jpg");
+}
+
 /*--------------------------------------------------------------
 # Search Modal
 --------------------------------------------------------------*/
-#modal-container {
-  height: auto;
-  min-height: 100%;
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+#modal-container .modal-dialog {
+  position: fixed;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  max-width: 100%;
+  display: flex;
+}
+
+#modal-container .modal-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 2px solid #3c7dcf;
   border-radius: 0;
+  box-shadow: none;
 }
 
 #modal-container .modal-header {
@@ -608,18 +646,18 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 1px 4px rgba(0,0,0,0.14);
 }
 
-#modal-container .modal-body .btn {
+#modal-container .filter-option .btn {
   width:20%;
   border-bottom: 3px solid #fff;
   transition: 0.5s;
 }
 
-#modal-container .modal-body .fa {
+#modal-container .filter-option .fa {
   color: rgba(0, 0, 0, 0.4);
 }
 
-#modal-container .modal-body .btn:hover {
-  width:20%;
+#modal-container .filter-option .btn:hover {
+  width: 20%;
   border-bottom: 3px solid #f74;
 }
 
@@ -650,6 +688,24 @@ h1, h2, h3, h4, h5, h6 {
 
 #modal-container .result-option .list-results {
   display: none;
+}
+
+#modal-container .modal-footer {
+  position: relative;
+  height: 55px;
+  background-color: #f74;
+}
+
+#modal-container .modal-footer button {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }
 
 /*--------------------------------------------------------------
@@ -704,22 +760,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------------------------------------------------
-# Authors
+# Authors - Collections - Topics
 --------------------------------------------------------------*/
-.authors .container {
+.authors-collections-topics .container {
   padding: 2.5em;
   max-width: 100%;
   background: #fafafa;
 }
 
-.authors .lst-item {
+.authors-collections-topics .lst-item {
   display: grid;
   grid-gap: 1.5em;
   grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
   grid-auto-rows: 0;
 }
 
-.authors .section-box {
+.authors-collections-topics .section-box {
   width: 100%;
   height: 300px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.14);
@@ -728,7 +784,7 @@ h1, h2, h3, h4, h5, h6 {
   background-position: center;
 }
 
-.authors .icon-box {
+.authors-collections-topics .icon-box {
   width: 100%;
   height: 100%;
   text-align: center;
@@ -739,7 +795,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.25s;
 }
 
-.authors .icon-box .icon-box-content {
+.authors-collections-topics .icon-box .icon-box-content {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -748,7 +804,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.25s;
 }
 
-.authors .icon-box h4 {
+.authors-collections-topics .icon-box h4 {
   font-family: 'Playfair Display', Georgia, serif;
   letter-spacing: 3px;
   font-weight: 700;
@@ -760,7 +816,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
 
-.authors .icon-box p {
+.authors-collections-topics .icon-box p {
   line-height: 24px;
   letter-spacing: 3px;
   font-size: 14px;
@@ -771,9 +827,16 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-.authors .icon-box:hover {
+.authors-collections-topics .icon-box:hover {
   opacity: 0;
   filter: alpha(opacity=0);
+}
+
+.authors-collections-topics hr {
+  width: 84px;
+  background-color: #f74;
+  height: 0.5px;
+  margin: 20px auto;
 }
 
 /*--------------------------------------------------------------

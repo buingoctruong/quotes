@@ -28,7 +28,7 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <div th:replace="header :: header" />
+  <div th:replace="general/header :: header" />
   <!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
@@ -52,34 +52,36 @@
     </div>
   </section><!-- End Hero -->
 
-  <div class="modal" id="modal-container">
-    <div class="modal-content">
-      <div class="modal-header">
-        <form class="form-search">
-          <input id="search-content" type="search" placeholder="Search Quote" />
-        </form>
-      </div>
-      <div class="modal-body">
-        <section class="filter-option">
-          <button class="btn all"><i class="fa fa-th-list"></i></button>
-          <button class="btn authors"><i class="fa fa-user"></i></button>
-          <button class="btn collections"><i class="fa fa-star"></i></button>
-          <button class="btn quotes"><i class="fa fa-quote-right"></i></button>
-          <button class="btn topics"><i class="fa fa-folder"></i></button>
-        </section>
-        <section class="result-option">
-            <h4>
-              <span class="customize-result">ALL RESULTS (0)</span>
-            </h4>
-            <p>
-              <span class="empty-result">No results found.</span>
-            </p>
-            <section class="list-results">
-            </section>
-        </section>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  <div id="modal-container" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <form class="form-search">
+            <input id="search-content" type="search" placeholder="Search Quote" />
+          </form>
+        </div>
+        <div class="modal-body">
+          <section class="filter-option">
+            <button class="btn all" onclick="getAllResults()"><i class="fa fa-th-list"></i></button>
+            <button class="btn authors" onclick="filterByAuthors()"><i class="fa fa-user"></i></button>
+            <button class="btn collections" onclick="filterByCollections()"><i class="fa fa-star"></i></button>
+            <button class="btn quotes" onclick="filterByQuotes()"><i class="fa fa-quote-right"></i></button>
+            <button class="btn topics" onclick="filterByTopics()"><i class="fa fa-folder"></i></button>
+          </section>
+          <section class="result-option">
+              <h4>
+                <span class="customize-result"></span>
+              </h4>
+              <p>
+                <span class="empty-result"></span>
+              </p>
+              <section class="list-results">
+              </section>
+          </section>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>

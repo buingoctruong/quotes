@@ -25,21 +25,31 @@
 
 </head>
 
-<body id="body" style="overflow: scroll;">
-
-  <!-- ======= Header ======= -->
-  <div th:replace="general/header :: header" />
-  <!-- End Header -->
-  
-  <section class="header-section quote">
-    <div class="header-section-container">
-    	<h1>Quotes</h1>
-    </div>
-  </section>
+<body>
 
   <!-- ======= Quotes Section ======= -->
-  <div th:replace="/general/quote-section :: quote-section" />
-  <!-- End Quotes Section -->
+  <section id="quotes" class="quotes" th:fragment="quote-section">
+    <div class="container">
+      <div class="lst-item">
+        <div class="item" th:each="quote : ${lstQuotes}">
+          <div class="item-content">
+              <section class="icon-box">
+                <h4 class="quote-content" th:text="${quote.content}"></h4>
+                <p class="quote-author" th:text="${quote.author}"></p>
+              </section>
+              <footer>
+                <button class="share-button">
+                    <i class="fa fa-share-alt fa-x"></i>
+                </button>
+                <button class="exclam-button">
+                  <i class="fa fa-exclamation-circle fa-x"></i>
+                </button>
+              </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Quotes Section -->
   
   <!-- Vendor JS Files -->
   <script src="assets/vendor/jquery/jquery.min.js"></script>

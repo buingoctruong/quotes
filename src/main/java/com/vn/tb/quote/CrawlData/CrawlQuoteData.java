@@ -10,16 +10,20 @@ import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.vn.tb.quote.Model.Author;
 import com.vn.tb.quote.Model.Quote;
+import com.vn.tb.quote.Repository.QuoteRepository;
 
 @Component
 public class CrawlQuoteData {
 	public static final String api = "https://api.quotery.com/wp-json/quotery/v1/quotes?";
 	
-	public List<Quote> callQuoteAPI(String nickName, int page, Author author) {
+	@Autowired
+	QuoteRepository quoteRepository;
+	
+	public List<Quote> callQuoteAPIWithAuthor(String nickName, int page) {
 		HttpURLConnection getConnection = null;
 		List<Quote> lst = new ArrayList<Quote>();
 		try {
@@ -31,9 +35,117 @@ public class CrawlQuoteData {
 		    
 		    url += "&" + URLEncoder.encode("per_page", "UTF-8") + "=" + 120;
 		    		    
-			URL houseRequest = new URL(url);
+			URL quoteRequest = new URL(url);
 		    String readLine = null;
-		    getConnection = (HttpURLConnection) houseRequest.openConnection();
+		    getConnection = (HttpURLConnection) quoteRequest.openConnection();
+		    getConnection.setRequestMethod("GET");
+		    getConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36");
+		    
+		    if (getConnection.getResponseCode() == 200) {
+		    	BufferedReader reader = new BufferedReader(
+			            new InputStreamReader(getConnection.getInputStream()));
+		        StringBuffer response = new StringBuffer();
+		        while ((readLine = reader.readLine()) != null) {
+		            response.append(readLine);
+		        }
+		        reader.close();
+		        	        
+		        JSONObject objResponse = new JSONObject(response.toString());
+		        Object quotes = objResponse.get("quotes");
+		        JSONArray objResult = new JSONArray(quotes.toString());
+		        		        		        
+		        for (int i = 0; i < objResult.length(); i++) {
+		            JSONObject jsonobject = objResult.getJSONObject(i);
+		            Quote quote = new Quote();
+		            quote.setContent(jsonobject.getString("body"));
+		            quote.setAuthor(jsonobject.getJSONObject("author").get("name").toString());
+		            lst.add(quote);
+		        }
+		    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (getConnection != null) {
+				getConnection.disconnect();
+            }
+		}
+		return lst;
+	}
+	
+	public List<Quote> callQuoteAPIWithCollection(String collectionName, String collectionSlugName, int page) {
+		HttpURLConnection getConnection = null;
+		List<Quote> lst = new ArrayList<Quote>();
+		try {
+			String url = api + URLEncoder.encode("collection", "UTF-8") + "=" + collectionSlugName;
+	        
+		    url += "&" + URLEncoder.encode("orderby", "UTF-8") + "=popular";
+		    
+		    url += "&" + URLEncoder.encode("page", "UTF-8") + "=" + page;
+		    
+		    url += "&" + URLEncoder.encode("per_page", "UTF-8") + "=" + 120;
+		    		    
+			URL quoteRequest = new URL(url);
+		    String readLine = null;
+		    getConnection = (HttpURLConnection) quoteRequest.openConnection();
+		    getConnection.setRequestMethod("GET");
+		    getConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36");
+		    
+		    if (getConnection.getResponseCode() == 200) {
+		    	BufferedReader reader = new BufferedReader(
+			            new InputStreamReader(getConnection.getInputStream()));
+		        StringBuffer response = new StringBuffer();
+		        while ((readLine = reader.readLine()) != null) {
+		            response.append(readLine);
+		        }
+		        reader.close();
+		        
+		        JSONArray objResult = new JSONArray(response.toString());
+		        		        
+		        for (int i = 0; i < objResult.length(); i++) {
+		            JSONObject jsonobject = objResult.getJSONObject(i);
+		            
+		            String content = jsonobject.getString("body");
+		            String author = jsonobject.getJSONObject("author").get("name").toString();
+
+		            List<Quote> existQuote = quoteRepository.findByContentAndAuthor(content, author);
+		            		            
+		            if (0 != existQuote.size()) {
+		            	existQuote.get(0).setCollection(collectionName);
+		            	quoteRepository.save(existQuote.get(0));
+		            } else {
+		            	Quote quote = new Quote();
+			            quote.setContent(content);
+			            quote.setAuthor(author);
+			            quote.setCollection(collectionName);
+			            lst.add(quote);
+		            }
+		        }
+		    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (getConnection != null) {
+				getConnection.disconnect();
+            }
+		}
+		return lst;
+	}
+	
+	public List<Quote> callQuoteAPIWithTopic(String topicName, String topicSlugName, int page) {
+		HttpURLConnection getConnection = null;
+		List<Quote> lst = new ArrayList<Quote>();
+		try {
+			String url = api + URLEncoder.encode("topic", "UTF-8") + "=" + topicSlugName;
+	        
+		    url += "&" + URLEncoder.encode("orderby", "UTF-8") + "=popular";
+		    
+		    url += "&" + URLEncoder.encode("page", "UTF-8") + "=" + page;
+		    
+		    url += "&" + URLEncoder.encode("per_page", "UTF-8") + "=" + 120;
+		    		    
+			URL quoteRequest = new URL(url);
+		    String readLine = null;
+		    getConnection = (HttpURLConnection) quoteRequest.openConnection();
 		    getConnection.setRequestMethod("GET");
 		    getConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36");
 		    
@@ -52,10 +164,22 @@ public class CrawlQuoteData {
 		        		        
 		        for (int i = 0; i < objResult.length(); i++) {
 		            JSONObject jsonobject = objResult.getJSONObject(i);
-		            Quote quote = new Quote();
-		            quote.setContent(jsonobject.getString("body"));
-		            quote.setAuthor(author);
-		            lst.add(quote);
+		            
+		            String content = jsonobject.getString("body");
+		            String author = jsonobject.getJSONObject("author").get("name").toString();
+
+		            List<Quote> existQuote = quoteRepository.findByContentAndAuthor(content, author);
+		            
+		            if (0 != existQuote.size()) {
+		            	existQuote.get(0).setTopic(topicName);
+		            	quoteRepository.save(existQuote.get(0));
+		            } else {
+		            	Quote quote = new Quote();
+			            quote.setContent(content);
+			            quote.setAuthor(author);
+			            quote.setTopic(topicName);
+			            lst.add(quote);
+		            }
 		        }
 		    }
 		} catch (Exception e) {
