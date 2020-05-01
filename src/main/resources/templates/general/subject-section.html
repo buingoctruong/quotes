@@ -32,7 +32,9 @@
 <body>
 
   <!-- ======= Subjects Section ======= -->
-  <section class="subject-section-container" th:style="'background-image:url(' + ${imageLink} + ');'" th:fragment="subject-section">
+  <section class="subject-section-container" th:style="'background-image: linear-gradient(rgba(10, 7, 6, 0.7), 
+                                                      rgba(10, 7, 6, 0.3)), url(' + ${imageLink} + ');'" 
+                                                      th:fragment="subject-section">
     <div class="subject-section-content">
     	<h1 th:text="${nameObj}"></h1>
     </div>

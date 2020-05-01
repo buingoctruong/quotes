@@ -32,7 +32,7 @@ public class TopicController {
 		List<Topic> lstTopics = topicService.getTopics(defaultPage, defaultPerPage);
 		
 		modelAndView.addObject("nameObj", "Quote");
-		modelAndView.addObject("imageLink", "/static/assets/img/quote-header.jpg");
+		modelAndView.addObject("imageLink", "https://static.quotery.com/backgrounds/1280/catalog-1280.jpg");
 		modelAndView.addObject("lstTopics", lstTopics);
 		
 		modelAndView.setViewName("topics/topics");

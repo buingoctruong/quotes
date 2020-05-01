@@ -22,6 +22,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/styleModalSummary.css" rel="stylesheet">
 
 </head>
 
@@ -51,10 +52,10 @@
               </a>
             </section>
             <footer>
-              <button class="share-button">
+              <button type="button" class="share-button">
                 <i class="fa fa-share-alt fa-x"></i>
               </button>
-              <button class="exclam-button">
+              <button type="button" class="exclam-button" data-toggle="modal" data-target="#exampleModalCenter">
                 <i class="fa fa-exclamation-circle fa-x"></i>
               </button>
             </footer>
@@ -63,6 +64,37 @@
       </div>
     </div>
   </section><!-- End Authors Section -->
+
+  <!-- ======= Modal Summary Section ======= -->
+  <!-- <div id="modal-summary-container" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+      <div class="summary-header">Summary</div>
+      <div class="summary-body">Born in a one-room log cabin in Kentucky, Abraham Lincoln rose to become the 16th President of the United States. He was a lawyer and politician, noted for his anti-slavery views. In the 1850s, as the influence of the slave states on the federal government grew stronger, Lincoln returned to politics, winning the 1860 Presidential election entirely on the strength of the free states. The South seceded shortly thereafter, plunging the US into the Civil War. Lincoln ran the country throughout the war, signing the Emancipation Act in 1862. As the war ended, he was Assassinated by John Wilkes Booth at the Ford Theater in Washington DC.
+      </div>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div> -->
+  <!-- End Modal Summary -->
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
   
   <!-- Vendor JS Files -->
   <script src="assets/vendor/jquery/jquery.min.js"></script>

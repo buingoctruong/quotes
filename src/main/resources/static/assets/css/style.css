@@ -1,10 +1,3 @@
-/**
-* Template Name: Laura - v2.0.0
-* Template URL: https://bootstrapmade.com/laura-free-creative-bootstrap-theme/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -529,10 +522,10 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 .subject-section-container {
   width: 100%;
-  height: 50vh;
-  background-repeat: no-repeat;
-  background-size: 100%;
+  height: 45vh;
   position: relative;
+  background-size: cover;
+  background-position: center;
 }
 
 .subject-section-container .subject-section-content {
@@ -558,152 +551,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------------------------------------------------
-# Search Modal
---------------------------------------------------------------*/
-.modal {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-}
-
-#modal-container .modal-dialog {
-  position: fixed;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  max-width: 100%;
-  display: flex;
-}
-
-#modal-container .modal-content {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border: 2px solid #3c7dcf;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-#modal-container .modal-header {
-  background-color: rgb(255, 255, 255);
-  padding: 12px;
-}
-
-#modal-container .modal-header .form-search {
-  width: 100%;
-  position: relative;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  margin: 24px 0px;
-  padding: 0px 16px;
-}
-
-#modal-container .modal-header #search-content {
-  -webkit-appearance: none;
-  left: 0px;
-  right: 0px;
-  position: absolute;
-  text-align: center;
-  font-size: 15px;
-  text-transform: uppercase;
-  width: 100%;
-  height: 3.1rem;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg fill='%23ccc' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3e%3cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3e%3c/svg%3e");
-  background-color: rgba(0, 0, 0, 0.06);
-  background-position: 8px 8px;
-  background-repeat: no-repeat;
-  background-size: 30px 30px;
-  padding: 12px 24px 12px 40px;
-  outline: none;
-  border-radius: 28px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: transparent;
-  border-image: initial;
-}
-
-#modal-container .modal-body .filter-option {
-  width:100%;
-  font-size:0;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.14);
-}
-
-#modal-container .filter-option .btn {
-  width:20%;
-  border-bottom: 3px solid #fff;
-  transition: 0.5s;
-}
-
-#modal-container .filter-option .fa {
-  color: rgba(0, 0, 0, 0.4);
-}
-
-#modal-container .filter-option .btn:hover {
-  width: 20%;
-  border-bottom: 3px solid #f74;
-}
-
-#modal-container .result-option {
-  padding: 24px 12px 12px;
-  overflow: auto;
-}
-
-#modal-container .result-option h4 {
-  text-align: center;
-  font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
-  line-height: 1.5;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  letter-spacing: 3px;
-  font-weight: 500;
-  font-size: 14px;
-  text-transform: uppercase;
-}
-
-#modal-container .result-option p {
-  font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
-  line-height: 1.5;
-  font-size: inherit;
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-
-#modal-container .result-option .list-results {
-  display: none;
-}
-
-#modal-container .modal-footer {
-  position: relative;
-  height: 55px;
-  background-color: #f74;
-}
-
-#modal-container .modal-footer button {
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-}
-
-/*--------------------------------------------------------------
 # Quotes
 --------------------------------------------------------------*/
 .quotes .container {
   padding: 2.5em;
   max-width: 100%;
-  background: #fafafa;
+  background: #F1F0EA;
 }
 
 .quotes .lst-item {
@@ -754,7 +607,7 @@ h1, h2, h3, h4, h5, h6 {
 .authors-collections-topics .container {
   padding: 2.5em;
   max-width: 100%;
-  background: #fafafa;
+  background: #F1F0EA;
 }
 
 .authors-collections-topics .lst-item {
@@ -841,7 +694,8 @@ footer {
   justify-content: space-between;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
   padding: 0px 12px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.14)
+  box-shadow: 0 1px 4px rgba(0,0,0,0.14);
+  background-color: #fff;
 }
 
 footer .share-button {

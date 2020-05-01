@@ -32,7 +32,7 @@ public class CollectionController {
 		List<Collection> lstCollections = collectionService.getCollections(defaultPage, defaultPerPage);
 		
 		modelAndView.addObject("nameObj", "Collection");
-		modelAndView.addObject("imageLink", "/static/assets/img/quote-header.jpg");
+		modelAndView.addObject("imageLink", "https://static.quotery.com/backgrounds/1280/bookmarks-1280.jpg");
 		modelAndView.addObject("lstCollections", lstCollections);
 		modelAndView.setViewName("collections/collections");
 		return modelAndView;
