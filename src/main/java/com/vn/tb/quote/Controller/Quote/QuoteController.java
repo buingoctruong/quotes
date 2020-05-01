@@ -25,9 +25,14 @@ public class QuoteController {
 	public ModelAndView Quotes(ModelAndView modelAndView) {
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+		
 		List<Quote> lstQuotes = quoteService.getQuotes(defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", "Quote");
+		modelAndView.addObject("imageLink", "/static/assets/img/quote-header.jpg");
 		modelAndView.addObject("lstQuotes", lstQuotes);
-		modelAndView.setViewName("quotes");
+		
+		modelAndView.setViewName("quotes/quotes");
 		return modelAndView;
 	}
 }

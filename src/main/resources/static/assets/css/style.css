@@ -525,9 +525,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------------------------------------------------
-# Header Section
+# Subject Section
 --------------------------------------------------------------*/
-.header-section {
+.subject-section-container {
   width: 100%;
   height: 50vh;
   background-repeat: no-repeat;
@@ -535,7 +535,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-.header-section .header-section-container {
+.subject-section-container .subject-section-content {
   position: absolute;
   bottom: 0;
   top: 0;
@@ -548,24 +548,13 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 15px;
 }
 
-.header-section h1 {
+.subject-section-container h1 {
   margin: 0 0 10px 0;
   font-size: 56px;
   font-weight: 700;
   font-family: "Poppins", sans-serif;
   color: #fff;
-}
-
-.header-section.quote {
-  background-image: url("../img/quote-header.jpg");
-}
-
-.header-section.author {
-  background-image: url("../img/quote-header.jpg");
-}
-
-.header-section.collection {
-  background-image: url("../img/quote-header.jpg");
+  overflow-wrap: break-word;
 }
 
 /*--------------------------------------------------------------
@@ -835,8 +824,8 @@ h1, h2, h3, h4, h5, h6 {
 .authors-collections-topics hr {
   width: 84px;
   background-color: #f74;
-  height: 0.5px;
-  margin: 20px auto;
+  height: 0.4px;
+  margin: 0px auto;
 }
 
 /*--------------------------------------------------------------

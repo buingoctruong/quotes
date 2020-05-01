@@ -28,8 +28,13 @@ public class TopicController {
 	public ModelAndView Topics(ModelAndView modelAndView) {
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+		
 		List<Topic> lstTopics = topicService.getTopics(defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", "Quote");
+		modelAndView.addObject("imageLink", "/static/assets/img/quote-header.jpg");
 		modelAndView.addObject("lstTopics", lstTopics);
+		
 		modelAndView.setViewName("topics/topics");
 		return modelAndView;
 	}
@@ -39,8 +44,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+        
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/inspiration");
 		return modelAndView;
 	}
@@ -50,8 +64,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/love");
 		return modelAndView;
 	}
@@ -61,8 +84,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/wisdom");
 		return modelAndView;
 	}
@@ -72,8 +104,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/life");
 		return modelAndView;
 	}
@@ -83,8 +124,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/friendship");
 		return modelAndView;
 	}
@@ -105,8 +155,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/pain");
 		return modelAndView;
 	}
@@ -116,8 +175,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/personality");
 		return modelAndView;
 	}
@@ -127,8 +195,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/happiness");
 		return modelAndView;
 	}
@@ -138,8 +215,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/motivation");
 		return modelAndView;
 	}
@@ -149,8 +235,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/anger");
 		return modelAndView;
 	}
@@ -160,8 +255,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/behavior");
 		return modelAndView;
 	}
@@ -171,8 +275,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/dreams");
 		return modelAndView;
 	}
@@ -182,8 +295,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/attitude");
 		return modelAndView;
 	}
@@ -193,8 +315,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/hope");
 		return modelAndView;
 	}
@@ -204,8 +335,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/travel");
 		return modelAndView;
 	}
@@ -215,8 +355,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/courage");
 		return modelAndView;
 	}
@@ -226,8 +375,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/home");
 		return modelAndView;
 	}
@@ -237,8 +395,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/fear");
 		return modelAndView;
 	}
@@ -248,8 +415,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/appearance");
 		return modelAndView;
 	}
@@ -259,8 +435,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/creativity");
 		return modelAndView;
 	}
@@ -270,8 +455,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/sadness");
 		return modelAndView;
 	}
@@ -281,8 +475,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/family");
 		return modelAndView;
 	}
@@ -292,8 +495,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/experience");
 		return modelAndView;
 	}
@@ -303,8 +515,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/humanity");
 		return modelAndView;
 	}
@@ -314,8 +535,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/honesty");
 		return modelAndView;
 	}
@@ -325,8 +555,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/loneliness");
 		return modelAndView;
 	}
@@ -336,8 +575,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/lying");
 		return modelAndView;
 	}
@@ -347,8 +595,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/wealth");
 		return modelAndView;
 	}
@@ -358,8 +615,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/progress");
 		return modelAndView;
 	}
@@ -369,8 +635,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/quitting");
 		return modelAndView;
 	}
@@ -380,8 +655,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/giving");
 		return modelAndView;
 	}
@@ -391,8 +675,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/leadership");
 		return modelAndView;
 	}
@@ -402,8 +695,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/confidence");
 		return modelAndView;
 	}
@@ -413,8 +715,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/strength");
 		return modelAndView;
 	}
@@ -424,8 +735,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/change");
 		return modelAndView;
 	}
@@ -435,8 +755,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/growth");
 		return modelAndView;
 	}
@@ -446,8 +775,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/patience");
 		return modelAndView;
 	}
@@ -457,8 +795,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/memories");
 		return modelAndView;
 	}
@@ -468,8 +815,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/negativity");
 		return modelAndView;
 	}
@@ -479,8 +835,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/peace");
 		return modelAndView;
 	}
@@ -490,8 +855,17 @@ public class TopicController {
 		String topicLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = topicService.getTopicNameAndImage(topicLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByTopic(topicLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("topics/power");
 		return modelAndView;
 	}

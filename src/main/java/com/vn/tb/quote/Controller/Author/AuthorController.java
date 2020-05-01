@@ -23,7 +23,7 @@ public class AuthorController {
 		int defaultPerPage = 60;
 		List<Author> lstAuthors = authorService.getAuthors(defaultPage, defaultPerPage);
 		modelAndView.addObject("lstAuthors", lstAuthors);
-		modelAndView.setViewName("authors");
+		modelAndView.setViewName("authors/authors");
 		return modelAndView;
 	}
 }

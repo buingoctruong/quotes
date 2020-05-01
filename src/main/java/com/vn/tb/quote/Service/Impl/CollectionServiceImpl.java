@@ -14,8 +14,14 @@ public class CollectionServiceImpl implements CollectionService {
 	@Autowired
 	CollectionRepository collectionRepository;
 	
+	@Override
 	public List<Collection> getCollections(int page, int per_page) {
 		int offset = (page-1) * per_page;
 		return collectionRepository.getCollections(offset, per_page);
+	}
+	
+	@Override
+	public List<Object[]> getCollectionNameAndImage(String collectionLink) {
+		return collectionRepository.getCollectionNameAndImage(collectionLink);
 	}
 }

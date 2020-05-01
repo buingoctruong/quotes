@@ -28,7 +28,11 @@ public class CollectionController {
 	public ModelAndView Collections(ModelAndView modelAndView) {
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+		
 		List<Collection> lstCollections = collectionService.getCollections(defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", "Collection");
+		modelAndView.addObject("imageLink", "/static/assets/img/quote-header.jpg");
 		modelAndView.addObject("lstCollections", lstCollections);
 		modelAndView.setViewName("collections/collections");
 		return modelAndView;
@@ -39,8 +43,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+		
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/top-greatest-quotes-all-time");
 		return modelAndView;
 	}
@@ -50,8 +63,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+		
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/triumphant-veterans-day-quotes");
 		return modelAndView;
 	}
@@ -61,8 +83,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+		
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/outrageously-arrogant-quotes-kanye-west");
 		return modelAndView;
 	}
@@ -72,8 +103,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+		
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/innovative-quotes-steve-jobs");
 		return modelAndView;
 	}
@@ -83,8 +123,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+		
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/festive-thanksgiving-quotes-celebrating-gratitude");
 		return modelAndView;
 	}
@@ -94,8 +143,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/game-thrones-quotes");
 		return modelAndView;
 	}
@@ -105,8 +163,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/political-election-day-quotes");
 		return modelAndView;
 	}
@@ -116,8 +183,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/celebratory-labor-day-quotes");
 		return modelAndView;
 	}
@@ -127,8 +203,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/fascinating-winston-churchill-quotes");
 		return modelAndView;
 	}
@@ -138,8 +223,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/encouraging-graduation-quotes");
 		return modelAndView;
 	}
@@ -149,8 +243,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/enlightening-quotes-aspiring-writers");
 		return modelAndView;
 	}
@@ -160,8 +263,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/uplifting-friendship-quotes");
 		return modelAndView;
 	}
@@ -171,8 +283,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/patriotic-independence-day-quotes");
 		return modelAndView;
 	}
@@ -182,8 +303,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/motivational-fitness-quotes-get-shape");
 		return modelAndView;
 	}
@@ -193,8 +323,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/incredibly-profound-quotes-mister-rogers");
 		return modelAndView;
 	}
@@ -204,8 +343,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/remarkable-albert-einstein-quotes");
 		return modelAndView;
 	}
@@ -215,8 +363,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/great-quotes-great-women");
 		return modelAndView;
 	}
@@ -226,8 +383,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/empowering-startup-quotes-successful-entrepreneurs");
 		return modelAndView;
 	}
@@ -237,8 +403,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/wickedly-wonderful-halloween-quotes");
 		return modelAndView;
 	}
@@ -248,8 +423,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/delightful-coffee-quotes");
 		return modelAndView;
 	}
@@ -259,8 +443,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/invaluable-investment-quotes");
 		return modelAndView;
 	}
@@ -270,8 +463,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/notable-quotes-quotations-themselves");
 		return modelAndView;
 	}
@@ -281,8 +483,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/top-inspirational-quotes-all-time");
 		return modelAndView;
 	}
@@ -292,8 +503,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/glorious-memorial-day-quotes");
 		return modelAndView;
 	}
@@ -303,8 +523,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/wonderful-mothers-day-quotes");
 		return modelAndView;
 	}
@@ -314,8 +543,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/memorable-dr-seuss-quotes");
 		return modelAndView;
 	}
@@ -325,8 +563,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/top-funny-quotes-all-time");
 		return modelAndView;
 	}
@@ -336,8 +583,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/humorous-quotes-amusement");
 		return modelAndView;
 	}
@@ -347,8 +603,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/inspiring-quotes-martin-luther-king");
 		return modelAndView;
 	}
@@ -358,8 +623,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/top-love-quotes-all-time");
 		return modelAndView;
 	}
@@ -369,8 +643,17 @@ public class CollectionController {
 		String collectionLink = request.getRequestURI().substring(1);
 		int defaultPage = 1;
 		int defaultPerPage = 60;
+
+		List<Object[]> lstObj = collectionService.getCollectionNameAndImage(collectionLink);
+		String nameObj = lstObj.get(0)[0].toString();
+		String imageLink = lstObj.get(0)[1].toString();
+		
 		List<Quote> lstQuotes = quoteService.findByCollection(collectionLink, defaultPage, defaultPerPage);
+		
+		modelAndView.addObject("nameObj", nameObj);
+		modelAndView.addObject("imageLink", imageLink);
 		modelAndView.addObject("lstQuotes", lstQuotes);
+		
 		modelAndView.setViewName("collections/remarkable-fathers-day-quotes");
 		return modelAndView;
 	}
