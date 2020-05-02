@@ -10,7 +10,8 @@ import com.vn.tb.quote.Model.Quote;
 
 @Repository
 public interface QuoteRepository extends JpaRepository<Quote, Integer> {
-	@Query(value = "SELECT * FROM quote LIMIT :offset, :per_page ", nativeQuery = true)
+	// MySQL: SELECT * FROM quote LIMIT :offset, :per_page 
+	@Query(value = "SELECT * FROM quote LIMIT :per_page OFFSET :offset ", nativeQuery = true)
 	List<Quote> getQuotes(int offset, int per_page);
 	
 	List<Quote> findByContent(String content);

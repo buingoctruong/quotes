@@ -10,7 +10,8 @@ import com.vn.tb.quote.Model.Collection;
 
 @Repository
 public interface CollectionRepository extends JpaRepository<Collection, Integer>{
-	@Query(value = "SELECT * FROM collection LIMIT :offset, :per_page ", nativeQuery = true)
+	// MySQL: SELECT * FROM collection LIMIT :offset, :per_page 
+	@Query(value = "SELECT * FROM collection LIMIT :per_page OFFSET :offset ", nativeQuery = true)
 	List<Collection> getCollections(int offset, int per_page);
 	
 	@Query(value="SELECT name, image from collection c where c.link =:collectionLink", nativeQuery=true)

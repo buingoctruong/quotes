@@ -10,7 +10,8 @@ import com.vn.tb.quote.Model.Topic;
 
 @Repository
 public interface TopicRepository extends JpaRepository<Topic, Integer>{
-	@Query(value = "SELECT * FROM topic LIMIT :offset, :per_page ", nativeQuery = true)
+	// MySQL: SELECT * FROM topic LIMIT :offset, :per_page 
+	@Query(value = "SELECT * FROM topic LIMIT :per_page OFFSET :offset ", nativeQuery = true)
 	List<Topic> getTopics(int offset, int per_page);
 	
 	@Query(value="SELECT name, image from topic t where t.link =:topicLink", nativeQuery=true)
