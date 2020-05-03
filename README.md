@@ -8,3 +8,7 @@
     Spring Boot Framework
     Thymeleaf, JPA library, Mysql
     Java, Javascript, HTML, CSS, JQuery
+
+**Link Address**
+
+    https://wisdom-app-heroku.herokuapp.com/
