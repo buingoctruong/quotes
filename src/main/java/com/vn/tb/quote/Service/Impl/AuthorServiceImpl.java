@@ -19,4 +19,9 @@ public class AuthorServiceImpl implements AuthorService{
 		int offset = (page-1) * per_page;
 		return authorRepository.getAuthors(offset, per_page);
 	}
+	
+	@Override
+	public List<Object[]> getAuthorNameAndImage(String authorLink) {
+		return authorRepository.getAuthorNameAndImage(authorLink);
+	}
 }

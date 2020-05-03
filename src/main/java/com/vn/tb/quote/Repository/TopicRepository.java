@@ -11,6 +11,7 @@ import com.vn.tb.quote.Model.Topic;
 @Repository
 public interface TopicRepository extends JpaRepository<Topic, Integer>{
 	// MySQL: SELECT * FROM topic LIMIT :offset, :per_page 
+	// Postgres: SELECT * FROM topic LIMIT :per_page OFFSET :offset 
 	@Query(value = "SELECT * FROM topic LIMIT :per_page OFFSET :offset ", nativeQuery = true)
 	List<Topic> getTopics(int offset, int per_page);
 	

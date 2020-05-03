@@ -21,6 +21,7 @@ public class QuoteAPIController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Quote>> getListQuotes (
+			@RequestParam(value = "author", required = false) String author,
 			@RequestParam(value = "collection", required = false) String collection,
 			@RequestParam(value = "topic", required = false) String topic,
 			@RequestParam(value = "page", required = true, defaultValue = "1") int page,

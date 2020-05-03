@@ -28,7 +28,7 @@ public class QuoteController {
 		
 		List<Quote> lstQuotes = quoteService.getQuotes(defaultPage, defaultPerPage);
 		
-		modelAndView.addObject("nameObj", "Quote");
+		modelAndView.addObject("nameObj", "Quotes");
 		modelAndView.addObject("imageLink", "https://static.quotery.com/backgrounds/1280/books-1280.jpg");
 		modelAndView.addObject("lstQuotes", lstQuotes);
 		

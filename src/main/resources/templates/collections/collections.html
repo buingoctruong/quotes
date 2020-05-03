@@ -5,9 +5,12 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Laura Bootstrap Template - Index</title>
+  <title>Wisdom & Experience Life</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
+  
+  <!-- Favicons -->
+  <link href="assets/img/logo.png" rel="icon">
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Satisfy" rel="stylesheet">
@@ -22,6 +25,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/styleModalSummary.css" rel="stylesheet">
 
 </head>
 
@@ -54,7 +58,7 @@
               <button class="share-button">
                 <i class="fa fa-share-alt fa-x"></i>
               </button>
-              <button class="exclam-button">
+              <button type="button" class="exclam-button" th:onclick="showSummaryModal([[${collection.profile}]])">
                 <i class="fa fa-exclamation-circle fa-x"></i>
               </button>
             </footer>
@@ -63,6 +67,10 @@
       </div>
     </div>
   </section><!-- End Collections Section -->
+
+  <!-- ======= Modal Summary Share Section ======= -->
+  <div th:replace="general/modal-summary-share :: modal-summary-share" />
+  <!-- End Modal Summary Share -->
   
   <!-- Vendor JS Files -->
   <script src="assets/vendor/jquery/jquery.min.js"></script>

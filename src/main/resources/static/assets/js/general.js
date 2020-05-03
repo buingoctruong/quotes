@@ -73,3 +73,8 @@ function getSlugNameFromLink(path) {
 
 	return path.substring(nearLastIndex + 1, lastIndex);
 }
+
+function showSummaryModal(profile) {
+	$('#modal-summary-container').modal('show');
+	$('.modal-content .modal-body').text(profile);
+}

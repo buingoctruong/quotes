@@ -27,8 +27,14 @@ public class QuoteServiceImpl implements QuoteService{
 	}
 	
 	@Override
-	public List<Quote> findByTopic(String collection, int page, int per_page) {
+	public List<Quote> findByTopic(String topic, int page, int per_page) {
 		int offset = (page-1) * per_page;
-		return quoteRepository.findByTopic(collection, offset, per_page);
+		return quoteRepository.findByTopic(topic, offset, per_page);
+	}
+	
+	@Override
+	public List<Quote> findByAuthor(String author, int page, int per_page) {
+		int offset = (page-1) * per_page;
+		return quoteRepository.findByAuthor(author, offset, per_page);
 	}
 }

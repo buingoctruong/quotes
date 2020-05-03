@@ -548,6 +548,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Poppins", sans-serif;
   color: #fff;
   overflow-wrap: break-word;
+  text-align: center;
 }
 
 /*--------------------------------------------------------------
@@ -677,7 +678,7 @@ h1, h2, h3, h4, h5, h6 {
 .authors-collections-topics hr {
   width: 84px;
   background-color: #f74;
-  height: 0.4px;
+  height: 0.1px;
   margin: 0px auto;
 }
 

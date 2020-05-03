@@ -26,11 +26,17 @@ import com.vn.tb.quote.Repository.TopicRepository;
 public class CrawlTopicData {
 	public static final String api = "https://api.quotery.com/wp-json/quotery/v1/topics?orderby=popular&";
 	
-	public static final List<String> include = Arrays.asList("Inspiration", "Love", "Wisdom", "Friendship", "Life", "Pain", "Success", 
-			"Happiness", "Motivation", "Personality", "Anger", "Dreams", "Attitude", "Behavior", "Hope", "Travel", "Courage", "Home", 
-			"Fear", "Appearance", "Creativity", "Sadness", "Family", "Experience", "Humanity", "Honesty", "Loneliness", "Quitting", 
-			"Giving", "Confidence", "Leadership", "Strength", "Change", "Growth", "Patience", "Memories", "Peace", "Passion", "Youth", 
-			"Victory", "Knowledge", "Money", "Productivity", "Mistakes", "Forgiveness", "Power", "Negativity", "Progress", "Wealth", "Lying");
+//	("Inspiration", "Love", "Wisdom", "Friendship", "Life", "Pain", "Success", 
+//			"Happiness", "Motivation", "Personality", "Anger", "Dreams", "Attitude", "Behavior", "Hope", "Travel", "Courage", "Home", 
+//			"Fear", "Appearance", "Creativity", "Sadness", "Family", "Experience", "Humanity", "Honesty", "Loneliness", "Quitting", 
+//			"Giving", "Confidence", "Leadership", "Strength", "Change", "Growth", "Patience", "Memories", "Peace", "Passion", "Youth", 
+//			"Victory", "Knowledge", "Money", "Productivity", "Mistakes", "Forgiveness", "Power", "Negativity", "Progress", "Wealth", "Lying")
+	
+	public static final List<String> include = Arrays.asList("Love", "Life", "Pain", "Success", 
+			"Happiness", "Motivation", "Anger", "Dreams", "Fear", "Creativity", "Sadness", 
+			"Family", "Experience", "Loneliness", "Quitting", "Giving", "Confidence", "Leadership", 
+			"Strength", "Growth", "Patience", "Memories", "Passion", "Knowledge", "Productivity", 
+			"Mistakes", "Forgiveness", "Power", "Negativity", "Progress", "Lying");
 	
 	@Autowired
 	TopicRepository topicRepository;

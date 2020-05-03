@@ -1,28 +1,32 @@
 /*--------------------------------------------------------------
 # Summary Modal
 --------------------------------------------------------------*/
-/* .modal {
-  position: fixed;
+.modal-box {
+  display:table;
+  height: 100%;
   width: 100%;
-  max-width: 500px;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center;
+  pointer-events:none; /* This makes sure that we can still click outside of the modal to close it */
 }
 
-#modal-summary-container .modal-content {
-  width: 100%;
-  background-color: #fff;
-  vertical-align: top;
-  position: relative;
-  display: inline-block;
-  margin: 1.51898734177%;
+.modal-box-center {
+  /* To center vertically */
+  display: table-cell;
+  vertical-align: middle;
+  pointer-events:none;
 }
 
-#modal-summary-container .summary-header {
-  height: 72px;
+.modal-content {
+  /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+  width:inherit;
+  max-width:inherit; /* For Bootstrap 4 - to avoid the modal window stretching full width */
+  height:inherit;
+  /* To center horizontally */
+  margin: 0 auto;
+  pointer-events: all;
+}
+
+.modal-content .modal-header {
+  height: 60px;
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
@@ -34,18 +38,16 @@
   font-weight: 500;
   color: rgba(0, 0, 0, 0.87);
   background-color: rgb(255, 255, 255);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-#modal-summary-container .summary-body {
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 24px;
+.modal-content .modal-footer {
+  height: 55px;
+  display: inline;
+  position: relative;
+  background-color: #f74;
 }
 
-#modal-summary-container button {
+.modal-content .modal-footer button {
   width: 100%;
   position: absolute;
   top: 50%;
@@ -55,5 +57,5 @@
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 3px;
-  background-color: #f74;
-} */
+  margin: auto;
+}

@@ -9,5 +9,7 @@ public interface QuoteService {
 	
 	List<Quote> findByCollection(String collection, int page, int per_page);
 	
-	List<Quote> findByTopic(String collection, int page, int per_page);
+	List<Quote> findByTopic(String topic, int page, int per_page);
+	
+	List<Quote> findByAuthor(String author, int page, int per_page);
 }

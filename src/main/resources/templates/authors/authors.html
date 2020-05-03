@@ -5,9 +5,12 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Laura Bootstrap Template - Index</title>
+  <title>Wisdom & Experience Life</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
+  
+  <!-- Favicons -->
+  <link href="assets/img/logo.png" rel="icon">
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Satisfy" rel="stylesheet">
@@ -43,7 +46,7 @@
         <div class="item" th:each="author : ${lstAuthors}">
           <div class="item-content">
             <section class="section-box" th:style="'background-image:url(' + ${author.image} + ');'">
-              <a href="/quotes" class="icon-box">
+              <a th:href="@{'/' + ${author.link}}" class="icon-box">
                 <div class="icon-box-content">
                   <h4 class="author-name" th:text="${author.name}"></h4>
                   <hr>
@@ -55,7 +58,7 @@
               <button type="button" class="share-button">
                 <i class="fa fa-share-alt fa-x"></i>
               </button>
-              <button type="button" class="exclam-button" data-toggle="modal" data-target="#exampleModalCenter">
+              <button type="button" class="exclam-button" th:onclick="showSummaryModal([[${author.profile}]])">
                 <i class="fa fa-exclamation-circle fa-x"></i>
               </button>
             </footer>
@@ -65,36 +68,9 @@
     </div>
   </section><!-- End Authors Section -->
 
-  <!-- ======= Modal Summary Section ======= -->
-  <!-- <div id="modal-summary-container" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-content">
-      <div class="summary-header">Summary</div>
-      <div class="summary-body">Born in a one-room log cabin in Kentucky, Abraham Lincoln rose to become the 16th President of the United States. He was a lawyer and politician, noted for his anti-slavery views. In the 1850s, as the influence of the slave states on the federal government grew stronger, Lincoln returned to politics, winning the 1860 Presidential election entirely on the strength of the free states. The South seceded shortly thereafter, plunging the US into the Civil War. Lincoln ran the country throughout the war, signing the Emancipation Act in 1862. As the war ended, he was Assassinated by John Wilkes Booth at the Ford Theater in Washington DC.
-      </div>
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    </div>
-  </div> -->
-  <!-- End Modal Summary -->
-
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- ======= Modal Summary Share Section ======= -->
+  <div th:replace="general/modal-summary-share :: modal-summary-share" />
+  <!-- End Modal Summary Share -->
   
   <!-- Vendor JS Files -->
   <script src="assets/vendor/jquery/jquery.min.js"></script>
