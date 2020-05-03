@@ -33,10 +33,8 @@ public class CrawlTopicData {
 //			"Victory", "Knowledge", "Money", "Productivity", "Mistakes", "Forgiveness", "Power", "Negativity", "Progress", "Wealth", "Lying")
 	
 	public static final List<String> include = Arrays.asList("Love", "Life", "Pain", "Success", 
-			"Happiness", "Motivation", "Anger", "Dreams", "Fear", "Creativity", "Sadness", 
-			"Family", "Experience", "Loneliness", "Quitting", "Giving", "Confidence", "Leadership", 
-			"Strength", "Growth", "Patience", "Memories", "Passion", "Knowledge", "Productivity", 
-			"Mistakes", "Forgiveness", "Power", "Negativity", "Progress", "Lying");
+			"Motivation", "Dreams", "Fear", 
+			"Family", "Quitting", "Giving", "Confidence", "Strength");
 	
 	@Autowired
 	TopicRepository topicRepository;
@@ -83,7 +81,8 @@ public class CrawlTopicData {
 		            
 		            Set<Quote> lstQuotes = new HashSet<Quote>();
 		            
-		            for (int pageQuote = 1; pageQuote <= 20; pageQuote++) {
+		            // MaxPage is 20
+		            for (int pageQuote = 1; pageQuote <= 5; pageQuote++) {
 		            	List<Quote> lst = crawlQuoteData.callQuoteAPIWithTopic(getSlugName(jsonobject.getString("link")),
 		            			pageQuote, topic);
 		            	

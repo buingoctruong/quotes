@@ -64,7 +64,8 @@ public class CrawlCollectionData {
 	            
 	            Set<Quote> lstQuotes = new HashSet<Quote>();
 	            
-	            for (int pageQuote = 1; pageQuote <= 5; pageQuote++) {
+	            // MaxPage is 5
+	            for (int pageQuote = 1; pageQuote <= 1; pageQuote++) {
 	            	List<Quote> lst = crawlQuoteData.callQuoteAPIWithCollection(getSlugName(jsonobject.getString("link")), 
 	            			pageQuote, collection);
 	            	

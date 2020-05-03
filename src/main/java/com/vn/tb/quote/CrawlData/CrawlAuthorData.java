@@ -37,7 +37,7 @@ public class CrawlAuthorData {
 		try {
 			String url = api + URLEncoder.encode("page", "UTF-8") + "=" + pageAuthor;
 	        
-		    url += "&" + URLEncoder.encode("per_page", "UTF-8") + "=" + 42;
+		    url += "&" + URLEncoder.encode("per_page", "UTF-8") + "=" + 12;
 		    
 			URL authorRequest = new URL(url);
 		    String readLine = null;
