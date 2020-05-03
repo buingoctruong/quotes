@@ -32,9 +32,8 @@ public class CrawlTopicData {
 //			"Giving", "Confidence", "Leadership", "Strength", "Change", "Growth", "Patience", "Memories", "Peace", "Passion", "Youth", 
 //			"Victory", "Knowledge", "Money", "Productivity", "Mistakes", "Forgiveness", "Power", "Negativity", "Progress", "Wealth", "Lying")
 	
-	public static final List<String> include = Arrays.asList("Love", "Life", "Pain", "Success", 
-			"Motivation", "Dreams", "Fear", 
-			"Family", "Quitting", "Giving", "Confidence", "Strength");
+	public static final List<String> include = Arrays.asList("Love", "Pain", "Success", 
+			"Motivation", "Dreams", "Fear", "Family", "Quitting", "Strength");
 	
 	@Autowired
 	TopicRepository topicRepository;

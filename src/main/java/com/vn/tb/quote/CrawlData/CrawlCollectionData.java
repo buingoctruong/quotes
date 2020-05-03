@@ -22,7 +22,8 @@ import com.vn.tb.quote.Repository.QuoteRepository;
 
 @Component
 public class CrawlCollectionData {
-	public static final String api = "https://api.quotery.com/wp-json/quotery/v1/collections?orderby=popular&page=1&per_page=120";
+	// maxPage = 120
+	public static final String api = "https://api.quotery.com/wp-json/quotery/v1/collections?orderby=popular&page=1&per_page=90";
 	
 	@Autowired
 	CollectionRepository collectionRepository;
