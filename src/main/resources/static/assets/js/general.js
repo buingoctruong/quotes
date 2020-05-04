@@ -76,5 +76,24 @@ function getSlugNameFromLink(path) {
 
 function showSummaryModal(profile) {
 	$('#modal-summary-container').modal('show');
-	$('.modal-content .modal-body').text(profile);
+	$('#modal-summary-container .modal-body').text(profile);
+}
+
+function showShareModal(link) {
+	var webLink = window.location.origin;
+	var pageLink = webLink.concat('/').concat(link);
+
+	var facebookShareLink = "https://www.facebook.com/sharer/sharer.php?u=" + pageLink;
+	var twitterShareLink = "https://twitter.com/share?url=" + pageLink;
+	var linkedinShareLink = "https://www.linkedin.com/shareArticle?mini=true&url=" + pageLink;
+	var googleShareLink = "https://plus.google.com/share?url=" + pageLink;
+	var pinterestShareLink = "http://pinterest.com/pin/create/button/?url=" + pageLink;
+
+	$(".sharing-items .facebook").attr("href", facebookShareLink);
+	$(".sharing-items .twitter").attr("href", twitterShareLink);
+	$(".sharing-items .linkedin").attr("href", linkedinShareLink);
+	$(".sharing-items .google-plus").attr("href", googleShareLink);
+	$(".sharing-items .pinterest").attr("href", pinterestShareLink);
+
+	$('#modal-share-container').modal('show');
 }

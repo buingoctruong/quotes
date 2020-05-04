@@ -88,8 +88,8 @@ public class CrawlQuoteData {
 		    url += "&" + URLEncoder.encode("orderby", "UTF-8") + "=popular";
 		    
 		    url += "&" + URLEncoder.encode("page", "UTF-8") + "=" + page;
-		    
-		    url += "&" + URLEncoder.encode("per_page", "UTF-8") + "=" + 120;
+		    // Max is 120
+		    url += "&" + URLEncoder.encode("per_page", "UTF-8") + "=" + 100;
 		    		    
 			URL quoteRequest = new URL(url);
 		    String readLine = null;

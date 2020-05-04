@@ -22,7 +22,7 @@ public class ScheduledTasks {
 	@Autowired
 	CrawlQuoteData crawlQuoteData;
 	
-	@Scheduled(fixedRate = 1000000000)
+//	@Scheduled(fixedRate = 1000000000)
 	public void reportCurrentTime() {
 		log.info("the crawl is started");
 		try {
@@ -37,7 +37,7 @@ public class ScheduledTasks {
 			for (int pageTopic = 1; pageTopic <= 1; pageTopic++) {
 				crawlTopicData.callTopicAPI(pageTopic);
 			}
-						
+//						
 			log.info("the crawl is finished");
 		} catch (Exception e) {
 			e.printStackTrace();

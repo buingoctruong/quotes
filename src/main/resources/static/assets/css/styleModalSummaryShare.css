@@ -59,3 +59,73 @@
   letter-spacing: 3px;
   margin: auto;
 }
+
+.modal-content .sharing-items {
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-flow: row;
+}
+
+.sharing-items .button {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  padding-right: 30px;
+  padding-left: 70px;
+  position: relative;
+  background-color:rgb(0,0,0);
+  color:rgb(255,255,255);
+  text-decoration: none;
+  text-transform: none;
+  letter-spacing: 1px;
+  margin: 10px;
+  text-shadow:1px 1px 0px rgba(0,0,0,0.5);
+}
+
+.sharing-items .button:hover{
+  text-decoration: none;
+  color: #fff;
+  text-shadow: none;
+}
+
+.sharing-items .button p{font-size: 18px;}
+
+.sharing-items .button span {
+  position: absolute;
+  left: 0;
+  width: 50px;
+  font-size:30px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-right: 1px solid  rgba(0,0,0,0.15);
+  text-decoration: none;
+}
+
+.sharing-items .button.twitter {
+  background: #00acee;
+}
+
+.sharing-items .button.facebook {
+ background: #3b5998;
+}
+
+.sharing-items .button.linkedin {
+  background: #0e76a8;
+}
+
+.sharing-items .button.instagram{
+  background: #3f729b;
+}
+
+.sharing-items .button.pinterest{
+  background: #c8232c;
+}
+
+.sharing-items .button.google-plus{
+  background: #db4a39;
+}

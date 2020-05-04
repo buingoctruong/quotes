@@ -8,6 +8,12 @@
   <title>Wisdom & Experience Life</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
+
+  <meta name="description" content="Find your favorite quotes from our collection of familiar authors.">
+  <meta property="og:url" content="https://wisdom-app-heroku.herokuapp.com/authors">
+  <meta property="og:title" content="Quotes by Author">
+  <meta property="og:description" content="Find your favorite quotations from our collection of familiar authors.">
+  <meta property="og:image" content="https://static.quotery.com/backgrounds/480/author-480.jpg">
   
   <!-- Favicons -->
   <link href="assets/img/logo.png" rel="icon">
@@ -25,7 +31,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  <link href="assets/css/styleModalSummary.css" rel="stylesheet">
+  <link href="assets/css/styleModalSummaryShare.css" rel="stylesheet">
 
 </head>
 
@@ -55,7 +61,7 @@
               </a>
             </section>
             <footer>
-              <button type="button" class="share-button">
+              <button type="button" class="share-button" th:onclick="showShareModal([[${author.link}]])">
                 <i class="fa fa-share-alt fa-x"></i>
               </button>
               <button type="button" class="exclam-button" th:onclick="showSummaryModal([[${author.profile}]])">

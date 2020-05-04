@@ -25,7 +25,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  <link href="assets/css/styleModalSummary.css" rel="stylesheet">
+  <link href="assets/css/styleModalSummaryShare.css" rel="stylesheet">
 
 </head>
 
@@ -55,7 +55,7 @@
               </a>
             </section>
             <footer>
-              <button class="share-button">
+              <button type="button" class="share-button" th:onclick="showShareModal([[${topic.link}]])">
                 <i class="fa fa-share-alt fa-x"></i>
               </button>
               <button type="button" class="exclam-button" th:onclick="showSummaryModal([[${topic.profile}]])">
