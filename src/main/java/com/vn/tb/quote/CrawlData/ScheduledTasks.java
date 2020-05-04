@@ -22,7 +22,7 @@ public class ScheduledTasks {
 	@Autowired
 	CrawlQuoteData crawlQuoteData;
 	
-//	@Scheduled(fixedRate = 1000000000)
+	@Scheduled(fixedRate = 1000000000)
 	public void reportCurrentTime() {
 		log.info("the crawl is started");
 		try {
