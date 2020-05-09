@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vn.tb.quote.DTO.SearchResultDTO;
 import com.vn.tb.quote.Model.Quote;
 import com.vn.tb.quote.Repository.QuoteRepository;
 import com.vn.tb.quote.Service.QuoteService;
@@ -36,5 +37,10 @@ public class QuoteServiceImpl implements QuoteService{
 	public List<Quote> findByAuthor(String author, int page, int per_page) {
 		int offset = (page-1) * per_page;
 		return quoteRepository.findByAuthor(author, offset, per_page);
+	}
+	
+	@Override
+	public List<Object> findQuoteBySearchContent(String searchContent) {
+		return quoteRepository.findQuoteBySearchContent(searchContent);
 	}
 }

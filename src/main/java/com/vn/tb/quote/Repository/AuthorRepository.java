@@ -18,4 +18,7 @@ public interface AuthorRepository extends JpaRepository<Author, Integer> {
 	
 	@Query(value="SELECT name, image from author a where a.link =:authorLink", nativeQuery=true)
 	List<Object[]> getAuthorNameAndImage(String authorLink);
+	
+	@Query(value="SELECT name, link from author a where a.name like %:searchContent%", nativeQuery=true)
+	List<Object> findAuthorBySearchContent(String searchContent);
 }

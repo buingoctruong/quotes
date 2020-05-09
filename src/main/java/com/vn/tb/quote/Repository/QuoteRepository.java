@@ -36,4 +36,7 @@ public interface QuoteRepository extends JpaRepository<Quote, Integer> {
 	@Query(value = "SELECT * FROM quote q INNER JOIN author a ON a.id = q.author_id "
 			+ " WHERE a.link =:link LIMIT :per_page OFFSET :offset ", nativeQuery = true)
 	List<Quote> findByAuthor(String link, int offset, int per_page);
+	
+	@Query(value="SELECT content from quote q where q.content like %:searchContent%", nativeQuery=true)
+	List<Object> findQuoteBySearchContent(String searchContent);
 }

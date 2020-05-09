@@ -2,6 +2,7 @@ package com.vn.tb.quote.Service;
 
 import java.util.List;
 
+import com.vn.tb.quote.DTO.SearchResultDTO;
 import com.vn.tb.quote.Model.Quote;
 
 public interface QuoteService {
@@ -12,4 +13,6 @@ public interface QuoteService {
 	List<Quote> findByTopic(String topic, int page, int per_page);
 	
 	List<Quote> findByAuthor(String author, int page, int per_page);
+	
+	List<Object> findQuoteBySearchContent(String searchContent);
 }

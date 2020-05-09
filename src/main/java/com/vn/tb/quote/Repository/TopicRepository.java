@@ -17,4 +17,7 @@ public interface TopicRepository extends JpaRepository<Topic, Integer>{
 	
 	@Query(value="SELECT name, image from topic t where t.link =:topicLink", nativeQuery=true)
 	List<Object[]> getTopicNameAndImage(String topicLink);
+	
+	@Query(value="SELECT name, link from topic t where t.name like %:searchContent%", nativeQuery=true)
+	List<Object> findTopicBySearchContent(String searchContent);
 }

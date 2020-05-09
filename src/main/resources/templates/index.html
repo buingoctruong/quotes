@@ -67,16 +67,16 @@
       <div class="modal-content">
         <div class="modal-header">
           <form class="form-search">
-            <input id="search-content" type="search" placeholder="Search Quote" />
+            <input id="search-content" namd="search-content" type="search" placeholder="Search Quote" onsearch="search()"/>
           </form>
         </div>
         <div class="modal-body">
           <section class="filter-option">
-            <button class="btn all" onclick="getAllResults()"><i class="fa fa-th-list"></i></button>
-            <button class="btn authors" onclick="filterByAuthors()"><i class="fa fa-user"></i></button>
-            <button class="btn collections" onclick="filterByCollections()"><i class="fa fa-star"></i></button>
-            <button class="btn quotes" onclick="filterByQuotes()"><i class="fa fa-quote-right"></i></button>
-            <button class="btn topics" onclick="filterByTopics()"><i class="fa fa-folder"></i></button>
+            <button id="all" class="btn all" onclick="getAllResults()"><i class="fa fa-th-list"></i></button>
+            <button id="authors" class="btn authors" onclick="filterByAuthors()"><i class="fa fa-user"></i></button>
+            <button id="collectins" class="btn collections" onclick="filterByCollections()"><i class="fa fa-star"></i></button>
+            <button id="quotes" class="btn quotes" onclick="filterByQuotes()"><i class="fa fa-quote-right"></i></button>
+            <button id="topics" class="btn topics" onclick="filterByTopics()"><i class="fa fa-folder"></i></button>
           </section>
           <section class="result-option">
               <h4>

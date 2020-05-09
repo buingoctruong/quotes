@@ -17,4 +17,7 @@ public interface CollectionRepository extends JpaRepository<Collection, Integer>
 	
 	@Query(value="SELECT name, image from collection c where c.link =:collectionLink", nativeQuery=true)
 	List<Object[]> getCollectionNameAndImage(String collectionLink);
+	
+	@Query(value="SELECT name, link from collection c where c.name like %:searchContent%", nativeQuery=true)
+	List<Object> findCollectionBySearchContent(String searchContent);
 }

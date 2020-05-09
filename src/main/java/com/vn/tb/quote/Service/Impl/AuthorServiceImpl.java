@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vn.tb.quote.DTO.SearchResultDTO;
 import com.vn.tb.quote.Model.Author;
 import com.vn.tb.quote.Repository.AuthorRepository;
 import com.vn.tb.quote.Service.AuthorService;
@@ -23,5 +24,10 @@ public class AuthorServiceImpl implements AuthorService{
 	@Override
 	public List<Object[]> getAuthorNameAndImage(String authorLink) {
 		return authorRepository.getAuthorNameAndImage(authorLink);
+	}
+	
+	@Override
+	public List<Object> findAuthorBySearchContent(String searchContent) {
+		return authorRepository.findAuthorBySearchContent(searchContent);
 	}
 }
