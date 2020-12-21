@@ -2,7 +2,6 @@ package com.vn.tb.quote.Service;
 
 import java.util.List;
 
-import com.vn.tb.quote.DTO.SearchResultDTO;
 import com.vn.tb.quote.Model.Author;
 
 public interface AuthorService {

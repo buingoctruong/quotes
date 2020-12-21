@@ -15,6 +15,7 @@ import javax.transaction.Transactional;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import com.vn.tb.quote.Model.Quote;
@@ -45,6 +46,7 @@ public class CrawlTopicData {
 	CrawlQuoteData crawlQuoteData;
 	
 	@Transactional
+	@Async
 	public void callTopicAPI(int pageTopic) {
 		HttpURLConnection getConnection = null;
 		try {
@@ -82,8 +84,9 @@ public class CrawlTopicData {
 		            
 		            // MaxPage is 20
 		            for (int pageQuote = 1; pageQuote <= 5; pageQuote++) {
-		            	List<Quote> lst = crawlQuoteData.callQuoteAPIWithTopic(getSlugName(jsonobject.getString("link")),
-		            			pageQuote, topic);
+		            	List<Quote> lst = crawlQuoteData.callQuoteAPIWithTopic(getSlugName(
+		            			jsonobject.getString("link")),
+		            			pageQuote, topic).get();
 		            	
 		            	if (!lst.isEmpty()) {
 		            		lstQuotes.addAll(lst);
@@ -93,7 +96,9 @@ public class CrawlTopicData {
 		            }
 		            topic.getQuotes().addAll(lstQuotes);
 		            
-		            topicRepository.save(topic);
+		            synchronized (this) {
+		            	topicRepository.save(topic);
+		            }
 	            }
 	        }	        
 		} catch (Exception e) {

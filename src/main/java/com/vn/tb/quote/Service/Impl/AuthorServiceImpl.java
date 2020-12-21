@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vn.tb.quote.DTO.SearchResultDTO;
 import com.vn.tb.quote.Model.Author;
 import com.vn.tb.quote.Repository.AuthorRepository;
 import com.vn.tb.quote.Service.AuthorService;

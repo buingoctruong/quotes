@@ -12,6 +12,7 @@ import java.util.Set;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import com.vn.tb.quote.Model.Author;
@@ -32,12 +33,13 @@ public class CrawlAuthorData {
 	@Autowired
 	CrawlQuoteData crawlQuoteData;
 	
+	@Async
 	public void callAuthorAPI(int pageAuthor) {
 		HttpURLConnection getConnection = null;
 		try {
 			String url = api + URLEncoder.encode("page", "UTF-8") + "=" + pageAuthor;
 	        
-		    url += "&" + URLEncoder.encode("per_page", "UTF-8") + "=" + 9;
+		    url += "&" + URLEncoder.encode("per_page", "UTF-8") + "=" + 120;
 		    
 			URL authorRequest = new URL(url);
 		    String readLine = null;
@@ -69,8 +71,9 @@ public class CrawlAuthorData {
 	            Set<Quote> lstQuotes = new HashSet<Quote>();
 	            
 	            for (int pageQuote = 1; pageQuote <= 18; pageQuote++) {
-	            	List<Quote> lst = crawlQuoteData.callQuoteAPIWithAuthor(getSlugName(jsonobject.getString("link")), 
-	            			pageQuote, author);
+	            	List<Quote> lst = crawlQuoteData.callQuoteAPIWithAuthor(
+	            			getSlugName(jsonobject.getString("link")), 
+	            			pageQuote, author).get();
 	            	
 	            	if (!lst.isEmpty()) {
 	            		lstQuotes.addAll(lst);
@@ -78,10 +81,10 @@ public class CrawlAuthorData {
 	            		break;
 	            	}
 	            }
-	            
 	            author.setQuotes(lstQuotes);
-	            
-	            authorRepository.save(author);
+	            synchronized (this) {
+	            	authorRepository.save(author);
+	            }
 	        }	        
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -13,6 +13,7 @@ import javax.transaction.Transactional;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import com.vn.tb.quote.Model.Collection;
@@ -35,6 +36,7 @@ public class CrawlCollectionData {
 	CrawlQuoteData crawlQuoteData;
 	
 	@Transactional
+	@Async
 	public void callCollectionAPI() {
 		HttpURLConnection getConnection = null;
 		try {		    
@@ -66,9 +68,10 @@ public class CrawlCollectionData {
 	            Set<Quote> lstQuotes = new HashSet<Quote>();
 	            
 	            // MaxPage is 5
-	            for (int pageQuote = 1; pageQuote <= 1; pageQuote++) {
-	            	List<Quote> lst = crawlQuoteData.callQuoteAPIWithCollection(getSlugName(jsonobject.getString("link")), 
-	            			pageQuote, collection);
+	            for (int pageQuote = 1; pageQuote <= 5; pageQuote++) {
+	            	List<Quote> lst = crawlQuoteData.callQuoteAPIWithCollection(
+	            			getSlugName(jsonobject.getString("link")), 
+	            			pageQuote, collection).get();
 	            	
 	            	if (!lst.isEmpty()) {
 	            		lstQuotes.addAll(lst);
@@ -79,7 +82,9 @@ public class CrawlCollectionData {
 	            
 	            collection.getQuotes().addAll(lstQuotes);
 	            
-	            collectionRepository.save(collection);
+	            synchronized (this) {
+	            	collectionRepository.save(collection);
+	            }
 	        }	        
 		} catch (Exception e) {
 			e.printStackTrace();

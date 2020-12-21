@@ -7,12 +7,14 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import javax.transaction.Transactional;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import com.vn.tb.quote.Model.Author;
@@ -28,7 +30,8 @@ public class CrawlQuoteData {
 	@Autowired
 	QuoteRepository quoteRepository;
 	
-	public List<Quote> callQuoteAPIWithAuthor(String nickName, int page, Author author) {
+	@Async
+	public CompletableFuture<List<Quote>> callQuoteAPIWithAuthor(String nickName, int page, Author author) {
 		HttpURLConnection getConnection = null;
 		List<Quote> lst = new ArrayList<Quote>();
 		try {
@@ -75,11 +78,12 @@ public class CrawlQuoteData {
 				getConnection.disconnect();
             }
 		}
-		return lst;
+		return CompletableFuture.completedFuture(lst);
 	}
 	
 	@Transactional
-	public List<Quote> callQuoteAPIWithCollection(String collectionSlugName, int page, Collection collection) {
+	@Async
+	public CompletableFuture<List<Quote>> callQuoteAPIWithCollection(String collectionSlugName, int page, Collection collection) {
 		HttpURLConnection getConnection = null;
 		List<Quote> lst = new ArrayList<Quote>();
 		try {
@@ -89,7 +93,7 @@ public class CrawlQuoteData {
 		    
 		    url += "&" + URLEncoder.encode("page", "UTF-8") + "=" + page;
 		    // Max is 120
-		    url += "&" + URLEncoder.encode("per_page", "UTF-8") + "=" + 100;
+		    url += "&" + URLEncoder.encode("per_page", "UTF-8") + "=" + 120;
 		    		    
 			URL quoteRequest = new URL(url);
 		    String readLine = null;
@@ -134,11 +138,12 @@ public class CrawlQuoteData {
 				getConnection.disconnect();
             }
 		}
-		return lst;
+		return CompletableFuture.completedFuture(lst);
 	}
 	
 	@Transactional
-	public List<Quote> callQuoteAPIWithTopic(String topicSlugName, int page, Topic topic) {
+	@Async
+	public CompletableFuture<List<Quote>> callQuoteAPIWithTopic(String topicSlugName, int page, Topic topic) {
 		HttpURLConnection getConnection = null;
 		List<Quote> lst = new ArrayList<Quote>();
 		try {
@@ -195,6 +200,6 @@ public class CrawlQuoteData {
 				getConnection.disconnect();
             }
 		}
-		return lst;
+		return CompletableFuture.completedFuture(lst);
 	}
 }
